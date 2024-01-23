@@ -1,0 +1,29 @@
+<%= turbo_frame_tag @todo_list do %>
+  <h1><%= @todo_list.name %></h1>
+  <p>Id: <%= @todo_list.id %></p>
+  <p>Completed: <%= @todo_list.completed? %></p>
+  <p>Created at: <%= @todo_list.created_at %></p>
+  <p>Updated at: <%= @todo_list.updated_at %></p>
+  <%= link_to 'Edit this todo', edit_todo_list_path(@todo_list) %>
+
+  <h2>Todo Items</h2>
+  <%= link_to 'Add Todo Item', new_todo_list_todo_item_path(@todo_list), class: "btn btn-primary" %>
+  <% if @todo_list.todo_items.any? %>
+    <ul>
+      <% @todo_list.todo_items.each do |todo_item| %>
+        <li id="<%= dom_id(todo_item) %>">
+          <%= todo_item.title %> (Created at: <%= todo_item.created_at.strftime("%Y-%m-%d %H:%M:%S") %>)
+          <%= todo_item.completed? ? 'Completed' : 'Uncompleted' %> |
+          <%= link_to 'Show', todo_list_todo_item_path(@todo_list, todo_item), class: "btn btn-primary" %> |
+          <%= link_to 'Edit', edit_todo_list_todo_item_path(@todo_list, todo_item), class: "btn btn-primary" %> |
+          <%= button_to 'Delete', todo_list_todo_item_path(@todo_list, todo_item), method: :delete, data: { confirm: 'Are you sure?' }, 
+              form: { class: 'button_to_inline' }, class: 'delete-button' %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No todo items found.</p>
+  <% end %>
+
+  <%= link_to 'Back', todo_lists_path, class: "btn btn-primary" %>
+<% end %>

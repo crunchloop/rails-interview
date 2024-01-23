@@ -1,0 +1,12 @@
+<%= link_to 'Add Todo Item', new_todo_list_todo_item_path(@todo_list) %>
+
+<div>
+  <% @todo_items.each do |todo_item| %>
+    <div>
+      #<%= todo_item.id %> | <%= todo_item.title %> | <%= todo_item.description %> |
+      <%= todo_item.completed? ? "Completed" : "Uncompleted" %> |
+      <%= link_to 'Show', todo_list_todo_item_path(todo_item.todo_list, todo_item) %> |
+      <%= link_to 'Edit', edit_todo_list_todo_item_path(todo_item.todo_list, todo_item) %>
+    </div>
+  <% end %>
+</div>

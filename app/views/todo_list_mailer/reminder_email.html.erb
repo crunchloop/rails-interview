@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Uncompleted Todo Lists Reminder</title>
+</head>
+<body>
+  <h1>Reminder: Uncompleted Todo Lists</h1>
+  <p>Here is a list of uncompleted todo lists:</p>
+  <ul>
+    <% @uncompleted_lists.each do |list| %>
+      <li>
+        <%= list.name %> (ID: <%= list.id %>, Created at: <%= list.created_at.strftime("%Y-%m-%d %H:%M") %>)
+        - <a href="<%= todo_list_url(list) %>">View List</a>
+      </li>
+    <% end %>
+  </ul>
+  <p>Please review them as soon as possible.</p>
+</body>
+</html>

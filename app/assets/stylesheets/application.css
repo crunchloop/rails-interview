@@ -13,3 +13,31 @@
  *= require_tree .
  *= require_self
  */
+
+.button_to_inline {
+  display: inline;
+}
+
+.delete-button {
+  background: none;
+  color: #a72020;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.delete-button:hover,
+.delete-button:focus,
+.delete-button:active {
+  background: transparent !important;
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+.error-messages {
+  color: red;
+}

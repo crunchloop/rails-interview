@@ -1,9 +1,13 @@
-<%= link_to 'Add Todo List', new_todo_list_path %>
+<%= turbo_frame_tag @todo_list do %>
+  <%= link_to 'Add Todo List', new_todo_list_path %>
 
-<div>
-  <% @todo_lists.each do |todo_list| %>
-    <div>
-      #<%= todo_list.id %> | <%= todo_list.name %>
-    </div>
-  <% end %>
-</div>
+  <div>
+    <% @todo_lists.each do |todo_list| %>
+      <div id="<%= dom_id(todo_list) %>">
+        #<%= todo_list.id %> | <%= todo_list.name %> | <%= todo_list.completed? ? 'Competed' : 'Uncompleted' %> |
+        <%= link_to 'Show', todo_list_path(todo_list) %> | <%= link_to 'Edit', edit_todo_list_path(todo_list) %> |
+        <%= button_to 'Delete', todo_list_path(todo_list), method: :delete, data: { confirm: 'Are you sure?' }, form: { class: 'button_to_inline' }, class: 'delete-button' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

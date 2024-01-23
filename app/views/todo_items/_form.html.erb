@@ -1,0 +1,25 @@
+<%= form_with(model: [todo_list, todo_item]) do |form| %>
+  <% if todo_item.errors.any? %>
+    <div id="error_explanation" class="error-messages">
+      <h2><%= pluralize(todo_item.errors.count, "error") %> prohibited this todo item from being saved:</h2>
+
+      <ul>
+      <% todo_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+    <br/>
+  <% end %>
+
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+  <br />
+  <%= form.label :description %>
+  <%= form.text_area :description %>
+
+  <%= form.label :completed %>
+  <%= form.check_box :completed %>
+
+  <%= form.submit "#{todo_item.new_record? ? 'Create' : 'Update'} Todo Item" %>
+<% end %>
