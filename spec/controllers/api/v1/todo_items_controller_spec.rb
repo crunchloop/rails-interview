@@ -6,24 +6,39 @@ describe Api::V1::TodoItemsController do
   render_views
 
   describe 'GET index' do
-    let!(:todo_item) { create(:todo_item) }
-
-    before do
-      get :index, params: { todo_list_id: todo_item.todo_list.id }, format: :json
-      @todo_items = JSON.parse(response.body)
-    end
+    let!(:todo_list) { create(:todo_list) }
+    let!(:todo_items) { create_list(:todo_item, 10, todo_list: todo_list) }
+    let(:index_request) { get :index, params: { todo_list_id: todo_list.id }, format: :json }
 
     it 'returns a success code' do
+      index_request
+
       expect(response.status).to eq(200)
     end
 
     it 'returns item info' do
+      index_request
+      todos = JSON.parse(response.body)
+
       aggregate_failures 'includes the id and name' do
-        expect(@todo_items.count).to eq(1)
-        expect(@todo_items[0].keys).to match_array(%w[id name description completed])
-        expect(@todo_items[0]['id']).to eq(todo_item.id)
-        expect(@todo_items[0]['name']).to eq(todo_item.name)
+        expect(todos.count).to eq(10)
+        expect(todos[0].keys).to match_array(%w[id name description completed])
+        expect(todos[0]['id']).to eq(todo_items[0].id)
+        expect(todos[0]['name']).to eq(todo_items[0].name)
       end
+    end
+
+    it 'paginates the todo items' do
+      get :index, params: { todo_list_id: todo_list.id, page: 1, per_page: 5 }, format: :json
+      json_response = JSON.parse(response.body)
+      expect(json_response.size).to eq(5)
+    end
+
+    it 'returns the second page of todo items' do
+      get :index, params: { todo_list_id: todo_list.id, page: 2, per_page: 5 }, format: :json
+      json_response = JSON.parse(response.body)
+      expect(json_response.size).to eq(5)
+      expect(json_response.first['id']).to eq(todo_items[5].id)
     end
   end
 
