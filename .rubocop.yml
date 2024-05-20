@@ -1,0 +1,19 @@
+AllCops:
+  Exclude:
+    - 'bin/*'
+    - 'config/**/*'
+    - 'db/**/*'
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: true
+  Exclude:
+    - app/**/*
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - app/views/api/v1/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*

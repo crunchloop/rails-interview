@@ -55,6 +55,8 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.2'
 
   gem 'shoulda-matchers', '~> 5.3'
+
+  gem 'rubocop', '~> 1.63', '>= 1.63.5'
 end
 
 group :development do
