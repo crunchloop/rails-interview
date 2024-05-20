@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class TodoItemsController < ActionController::API
-      before_action :find_todo_item, only: [:update, :destroy]
+      before_action :find_todo_item, only: %i[update destroy]
 
       def index
         @todo_items = TodoItem.where(todo_list_id: todo_items_params[:todo_list_id])
@@ -17,7 +19,6 @@ module Api
         else
           render json: @todo_item.errors, status: :unprocessable_entity
         end
-
       rescue ActiveRecord::RecordNotFound
         render json: { error: 'Todo list not found' }, status: :not_found
       end

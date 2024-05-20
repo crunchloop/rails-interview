@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Api::V1::TodoListsController do
@@ -8,9 +10,9 @@ describe Api::V1::TodoListsController do
 
     context 'when format is HTML' do
       it 'raises a routing error' do
-        expect {
+        expect do
           get :index
-        }.to raise_error(ActionController::UnknownFormat)
+        end.to raise_error(ActionController::UnknownFormat)
       end
     end
 
@@ -28,7 +30,7 @@ describe Api::V1::TodoListsController do
 
         aggregate_failures 'includes the id and name' do
           expect(todo_lists.count).to eq(1)
-          expect(todo_lists[0].keys).to match_array(['id', 'name'])
+          expect(todo_lists[0].keys).to match_array(%w[id name])
           expect(todo_lists[0]['id']).to eq(todo_list.id)
           expect(todo_lists[0]['name']).to eq(todo_list.name)
         end

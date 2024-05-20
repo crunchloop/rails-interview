@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe CompleteAllItemsWorker, type: :worker do
@@ -15,7 +17,7 @@ RSpec.describe CompleteAllItemsWorker, type: :worker do
 
   it 'logs an error if the todo list is not found' do
     expect(Rails.logger).to receive(:error).with(
-      "TodoList not found. CompleteAllItemsWorker failed for TodoList ##{-1}"
+      'TodoList not found. CompleteAllItemsWorker failed for TodoList #-1'
     )
 
     worker.perform(-1)

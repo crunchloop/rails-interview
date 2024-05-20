@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Api::V1::TodoItemsController do
@@ -18,7 +20,7 @@ describe Api::V1::TodoItemsController do
     it 'returns item info' do
       aggregate_failures 'includes the id and name' do
         expect(@todo_items.count).to eq(1)
-        expect(@todo_items[0].keys).to match_array(['id', 'name', 'description', 'completed'])
+        expect(@todo_items[0].keys).to match_array(%w[id name description completed])
         expect(@todo_items[0]['id']).to eq(todo_item.id)
         expect(@todo_items[0]['name']).to eq(todo_item.name)
       end
@@ -40,7 +42,7 @@ describe Api::V1::TodoItemsController do
 
     it 'returns new item info' do
       aggregate_failures 'includes id, name, descritpion and todo list id' do
-        expect(@todo_item.keys).to match_array(['id', 'todo_list_id', 'name', 'description', 'completed'])
+        expect(@todo_item.keys).to match_array(%w[id todo_list_id name description completed])
         expect(@todo_item['name']).to eq(todo_item_params[:name])
         expect(@todo_item['description']).to eq(todo_item_params[:description])
       end
