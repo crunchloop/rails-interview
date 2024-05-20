@@ -58,7 +58,7 @@ describe Api::V1::TodoListsController do
       patch :complete_all, params: { id: -1 }, format: :json
 
       expect(response.status).to eq(404)
-      expect(JSON.parse(response.body)).to eq({ 'error' => 'Todo list not found' })
+      expect(JSON.parse(response.body)).to eq({ 'error' => 'Record not found for TodoList' })
     end
   end
 end

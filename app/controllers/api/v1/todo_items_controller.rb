@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class TodoItemsController < ActionController::API
+    class TodoItemsController < BaseApiController
       before_action :find_todo_item, only: %i[update destroy]
 
       def index
@@ -19,8 +19,6 @@ module Api
         else
           render json: @todo_item.errors, status: :unprocessable_entity
         end
-      rescue ActiveRecord::RecordNotFound
-        render json: { error: 'Todo list not found' }, status: :not_found
       end
 
       def update
@@ -47,8 +45,6 @@ module Api
 
       def find_todo_item
         @todo_item = TodoItem.find(todo_items_params[:id])
-      rescue ActiveRecord::RecordNotFound
-        render json: { error: 'Todo item not found' }, status: :not_found
       end
     end
   end

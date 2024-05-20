@@ -59,34 +59,56 @@ describe Api::V1::TodoItemsController do
       { todo_list_id: todo_item.todo_list_id, id: todo_item.id, name: 'New name', description: 'New description' }
     end
 
+    let(:update_request) do
+      put :update, params: todo_item_params, format: :json
+    end
+
     before do
       put :update, params: todo_item_params, format: :json
     end
 
     it 'returns a success code' do
+      update_request
       expect(response.status).to eq(200)
     end
 
     it 'updates the todo item' do
+      update_request
+
       todo_item.reload
       expect(todo_item.name).to eq(todo_item_params[:name])
       expect(todo_item.description).to eq(todo_item_params[:description])
+    end
+
+    it 'returns an error if the todo item is not found' do
+      put :update, params: { todo_list_id: todo_item.todo_list_id, id: -1 }, format: :json
+
+      expect(response.status).to eq(404)
+      expect(JSON.parse(response.body)).to eq({ 'error' => 'Record not found for TodoItem' })
     end
   end
 
   describe 'DELETE destroy' do
     let!(:todo_item) { create(:todo_item) }
-
-    before do
+    let(:destroy_request) do
       delete :destroy, params: { todo_list_id: todo_item.todo_list_id, id: todo_item.id }, format: :json
     end
 
     it 'returns a no contend sucess code' do
+      destroy_request
       expect(response.status).to eq(204)
     end
 
     it 'deletes the todo item' do
+      destroy_request
       expect(TodoItem.count).to eq(0)
+    end
+
+    it 'returns an error if the todo item is not found' do
+      delete :destroy, params: { todo_list_id: todo_item.todo_list_id, id: -1 }, format: :json
+
+      expect(response.status).to eq(404)
+      expect(JSON.parse(response.body)).to eq({ 'error' => 'Record not found for TodoItem' })
     end
   end
 end
