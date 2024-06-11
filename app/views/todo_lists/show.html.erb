@@ -1,0 +1,12 @@
+<h1><%= @todo_list.name %></h1>
+<%= link_to "New Item", new_todo_list_todo_item_path(@todo_list), data: { turbo_frame: dom_id(TodoItem.new) } %>
+
+<%= turbo_frame_tag TodoItem.new %>
+
+<%= turbo_frame_tag 'todo_items' do %>
+  <ul>
+    <%= render @todo_list.todo_items, todo_list: @todo_list %>
+  </ul>
+<% end %>
+
+<%= link_to "Back", todo_lists_path %>

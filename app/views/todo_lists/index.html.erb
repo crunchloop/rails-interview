@@ -1,9 +1,9 @@
-<%= link_to 'Add Todo List', new_todo_list_path %>
+<%= link_to "New TodoList", new_todo_list_path, data: { turbo_frame: dom_id(TodoList.new) } %>
+
+<%= turbo_frame_tag TodoList.new %>
 
 <div>
-  <% @todo_lists.each do |todo_list| %>
-    <div>
-      #<%= todo_list.id %> | <%= todo_list.name %>
-    </div>
+  <%= turbo_frame_tag "todo_lists" do %>
+    <%= render @todo_lists %>
   <% end %>
 </div>

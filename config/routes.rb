@@ -5,5 +5,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :todo_lists, only: %i[index new], path: :todolists
+  resources :todo_lists, path: :todolists do
+    resources :todo_items, path: :todoitems
+  end
 end
