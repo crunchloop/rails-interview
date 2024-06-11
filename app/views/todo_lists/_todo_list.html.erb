@@ -1,0 +1,8 @@
+<%= turbo_frame_tag todo_list do %>
+  <div>
+    <%= link_to todo_list.name, todo_list_path(todo_list), data: { turbo_frame: '_top' } %>
+    <%= link_to "Edit", edit_todo_list_path(todo_list) %>
+    <%= button_to "Delete", todo_list_path(todo_list), method: :delete %>
+    <br />
+  </div>
+<% end %>

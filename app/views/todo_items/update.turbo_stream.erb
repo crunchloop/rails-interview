@@ -1,0 +1,4 @@
+<%= turbo_stream.remove @todo_item %>
+<%= turbo_stream.prepend "todo_items" do %>
+  <%= render @todo_item, todo_list: @todo_list %>
+<% end %>

@@ -1,0 +1,12 @@
+<%= form_with(model: todo_list) do |form| %>
+  <% if todo_list.errors.any? %>
+    <div>
+      <% todo_list.errors.full_messages.to_sentence.capitalize %>
+    </div>
+  <% end %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.submit %>
+  <%= link_to "Cancel", todo_lists_path, class: "btn btn--light" %>
+<% end %>
+

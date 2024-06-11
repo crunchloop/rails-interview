@@ -1,0 +1,7 @@
+<h1>New Todo Item</h1>
+
+<%= turbo_frame_tag @todo_item do %>
+  <%= render "form", todo_list: @todo_list, todo_item: @todo_item %>
+<% end %>
+
+<%= link_to "Back", todo_list_path(@todo_list) %>

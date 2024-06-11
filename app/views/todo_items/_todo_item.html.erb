@@ -1,0 +1,14 @@
+<%= turbo_frame_tag todo_item do %>
+  <div>
+    <%= turbo_frame_tag dom_id(todo_item, :edit) do %>
+      <li>
+        <%= todo_item.name %>
+        <% if todo_item.done %>
+          (Completed)
+        <% end %>
+        <%= button_to "Delete", todo_list_todo_item_path(todo_list, todo_item), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
+        <%= link_to "Edit", [:edit, todo_list, todo_item] %>
+      </li>
+    <% end %>
+  </div>
+<% end %>
