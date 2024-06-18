@@ -1,0 +1,15 @@
+AllCops:
+  Exclude:
+    - 'bin/bundle'
+    - 'config/environments/*.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - app/views/api/**/*
