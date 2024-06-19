@@ -1,9 +1,27 @@
-<%= link_to 'Add Todo List', new_todo_list_path %>
+<h1>Todo Lists</h1>
 
-<div>
-  <% @todo_lists.each do |todo_list| %>
-    <div>
-      #<%= todo_list.id %> | <%= todo_list.name %>
-    </div>
-  <% end %>
+<div id="todo_lists_container">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody id="todo_lists">
+      <% @todo_lists.each do |todo_list| %>
+        <%= render partial: 'todo_list', locals: { todo_list: todo_list } %>
+      <% end %>
+    </tbody>
+  </table>
 </div>
+
+<br>
+
+<h2>New Todo List</h2>
+<div id="new_todo_list">
+  <%= render 'form', todo_list: @todo_list %>
+</div>
+
+<div id="flash"></div>

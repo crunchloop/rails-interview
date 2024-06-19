@@ -1,0 +1,20 @@
+<div id="<%= dom_id(todo_item) %>" class="card">
+  <div class="card-header">
+    <h2><%= link_to todo_item.name, todo_list_todo_item_path(todo_item.todo_list, todo_item) %></h2>
+  </div>
+
+  <div class="card-body">
+    <strong>Description:</strong>
+    <%= todo_item.description %>
+  </div>
+
+  <div class="card-body">
+    <strong>Completed:</strong>
+    <%= todo_item.completed ? 'Yes' : 'No' %>
+  </div>
+
+  <div class="card-footer">
+    <%= link_to 'Edit', edit_todo_list_todo_item_path(todo_item.todo_list, todo_item), class: 'btn btn-primary' %>
+    <%= link_to 'Destroy', todo_list_todo_item_path(todo_item.todo_list, todo_item), data: { turbo_method: :delete, turbo_confirm: 'Are you sure? This will delete all associated ToDo Items.' }, class: 'btn btn-danger'%>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<h1>Todo List: <%= @todo_list.name %></h1>
+
+<h2>Todo Items</h2>
+<div id="todo_items">
+  <%= render @todo_list.todo_items %>
+</div>
+
+<br>
+
+<div id="new_todo_item">
+  <%= link_to 'Create New Todo Item', new_todo_list_todo_item_path(@todo_list), class: 'btn btn-primary' %>
+</div>
+
+<%= link_to 'All Items', todo_list_todo_items_path(@todo_list), class: 'btn btn-secondary' %> |
+<%= link_to 'Edit List', edit_todo_list_path(@todo_list), class: 'btn btn-secondary' %> |
+<%= link_to 'To Lists', todo_lists_path, class: 'btn btn-secondary' %>

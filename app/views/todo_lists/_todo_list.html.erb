@@ -1,0 +1,6 @@
+<tr id="<%= dom_id(todo_list) %>">
+  <td><%= todo_list.name %></td>
+  <td><%= link_to 'Show', todo_list %></td>
+  <td><%= link_to 'Edit', edit_todo_list_path(todo_list), data: { turbo_frame: dom_id(todo_list, :edit) }, class: 'btn btn-secondary' %></td>
+  <td><%= link_to 'Destroy', todo_list, data: { turbo_method: :delete, turbo_confirm: 'Are you sure? This will delete all associated ToDo Items.' }, class: 'btn btn-danger' %></td>
+</tr>
