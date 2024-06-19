@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-header">
+    <h2><%= @todo_item.name %></h2>
+  </div>
+  <div class="card-body">
+    <p><%= @todo_item.description %></p>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Edit', edit_todo_list_todo_item_path(@todo_item.todo_list, @todo_item), class: 'btn btn-secondary' %>
+    <%= link_to 'Back', todo_list_todo_items_path(@todo_item.todo_list), class: 'btn btn-primary' %>
+  </div>
+</div>

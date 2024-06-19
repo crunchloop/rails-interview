@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :todo_lists, path: :todolists do
     resources :todo_items, path: :todoitems
   end
+
+  root 'todo_lists#index'
 end

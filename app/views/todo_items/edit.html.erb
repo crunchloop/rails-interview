@@ -1,0 +1,10 @@
+<div class="card">
+  <div class="card-header">
+    <h2>Edit Item</h2>
+  </div>
+  <div class="card-body">
+    <%= render 'form', todo_item: @todo_item %>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Back to Items', todo_list_todo_items_path(@todo_item.todo_list), class: 'btn btn-primary' %>
+</div>

@@ -1,0 +1,2 @@
+<%= turbo_stream.replace @todo_list %>
+<%= turbo_stream.prepend 'flash', partial: 'layouts/flash', locals: { notice: 'ToDo List was successfully updated.' } %>

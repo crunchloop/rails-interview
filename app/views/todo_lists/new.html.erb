@@ -1,0 +1,7 @@
+<%= turbo_frame_tag 'new_todo_list_frame' do %>
+  <h1>New Todo List</h1>
+
+  <%= render 'form', todo_list: @todo_list %>
+
+  <%= link_to 'Back', todo_lists_path, class: 'btn btn-secondary' %>
+<% end %>

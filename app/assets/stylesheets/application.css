@@ -13,3 +13,219 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 20px;
+}
+
+h1, h2 {
+  color: #343a40;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table, th, td {
+  border: 1px solid #dee2e6;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #343a40;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #e9ecef;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.flash {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.flash.notice {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.flash.alert {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.field {
+  margin-bottom: 15px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.field input[type="text"],
+.field textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.actions {
+  text-align: right;
+}
+
+.actions input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.actions input[type="submit"]:hover {
+  background-color: #218838;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  margin: 5px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+#todo_items {
+  margin-bottom: 20px;
+}
+
+#new_todo_item {
+  margin-top: 20px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+form .form-group {
+  margin-bottom: 15px;
+}
+
+form .form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form .form-group input[type="text"],
+form .form-group input[type="password"],
+form .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form .form-group input[type="submit"],
+form .form-group input[type="button"] {
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #28a745;
+  border: 1px solid #28a745;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form .form-group input[type="submit"]:hover,
+form .form-group input[type="button"]:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.card {
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #343a40;
+}
+
+.card-body {
+  padding: 10px 0;
+}
+
+.card-footer {
+  padding: 10px 0;
+  text-align: right;
+}
+
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #343a40;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
