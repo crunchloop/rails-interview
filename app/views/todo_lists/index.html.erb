@@ -3,7 +3,20 @@
 <div>
   <% @todo_lists.each do |todo_list| %>
     <div>
-      #<%= todo_list.id %> | <%= todo_list.name %>
+      <strong>TodoList #<%= todo_list.id %></strong> | <%= todo_list.name %>
+
+      <% if todo_list.todo_items.any? %>
+        <ul>
+          <% todo_list.todo_items.each do |item| %>
+            <li>
+              <strong>TodoItem:</strong> <%= item.name %> - <%= item.description %> (Complete: <%= item.is_complete %>)
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No TodoItems found for this TodoList.</p>
+      <% end %>
     </div>
+    <hr>
   <% end %>
 </div>
