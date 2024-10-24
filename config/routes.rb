@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  #Swagger docs
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   
@@ -18,7 +21,6 @@ Rails.application.routes.draw do
     end
   end
   
-
   # resources :todo_lists, only: %i[index new create], path: :todolists
   resources :todo_lists, only: [:create, :index, :show, :new, :destroy]
 

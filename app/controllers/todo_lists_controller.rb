@@ -76,7 +76,8 @@ class TodoListsController < ApplicationController
       end
     end
 
-    redirect_to todo_lists_path, notice: "30.000 TodoLists with TodoItems created ok."
+    render json: { message: "30.000 TodoLists with TodoItems created ok." }, status: :ok
+
   end
 
   private
