@@ -1,0 +1,20 @@
+<h1><%= @todo_list.name %></h1>
+
+<h2>TodoItems:</h2>
+<ul>
+  <% if @todo_list.todo_items.any? %>
+    <% @todo_list.todo_items.each do |item| %>
+      <li>
+        <% if item.is_completed %>
+          <span style="color: green;">Completed</span>
+        <% else %>
+          <span style="color: red;">Incompleted</span>
+        <% end %>
+      </li>
+    <% end %>
+  <% else %>
+    <p>No more task in the list.</p>
+  <% end %>
+</ul>
+
+<%= link_to 'Back', todo_lists_path %>

@@ -9,12 +9,19 @@
         <ul>
           <% todo_list.todo_items.each do |item| %>
             <li>
-              <strong>TodoItem:</strong> <%= item.name %> - <%= item.description %> (Complete: <%= item.is_complete %>)
+              <strong>TodoItem:</strong> <%= item.name %> - <%= item.description %> (Complete: <%= item.is_completed %>)
             </li>
           <% end %>
         </ul>
       <% else %>
         <p>No TodoItems found for this TodoList.</p>
+      <% end %>
+
+      <%= turbo_frame_tag dom_id(todo_list) do %>
+        <div>
+          <%= todo_list.name %>
+          <%= button_to 'Check as completed', complete_todo_list_path(todo_list), method: :post, data: { turbo: true } %>
+        </div>
       <% end %>
     </div>
     <hr>
