@@ -1,38 +1,44 @@
 require 'rails_helper'
 
-describe Api::TodoListsController do
-  render_views
+RSpec.describe TodoListsController, type: :controller do
+  let!(:todo_list) { create(:todo_list) }  
+  # FactoryBot para crear una TodoList de prueba
 
-  describe 'GET index' do
-    let!(:todo_list) { TodoList.create(name: 'Setup RoR project') }
-
-    context 'when format is HTML' do
-      it 'raises a routing error' do
-        expect {
-          get :index
-        }.to raise_error(ActionController::RoutingError, 'Not supported format')
-      end
+  describe "GET #index" do
+    it "asigna todas las todo_lists a @todo_lists" do
+      get :index
+      expect(assigns(:todo_lists)).to eq([todo_list])
     end
 
-    context 'when format is JSON' do
-      it 'returns a success code' do
-        get :index, format: :json
+    it "devuelve una respuesta exitosa" do
+      get :index
+      expect(response).to have_http_status(:ok)
+    end
+  end
 
-        expect(response.status).to eq(200)
-      end
+  describe "GET #show" do
+    it "asigna la todo_list solicitada a @todo_list" do
+      get :show, params: { id: todo_list.id }
+      expect(assigns(:todo_list)).to eq(todo_list)
+    end
 
-      it 'includes todo list records' do
-        get :index, format: :json
+    it "devuelve una respuesta exitosa" do
+      get :show, params: { id: todo_list.id }
+      expect(response).to have_http_status(:ok)
+    end
+  end
 
-        todo_lists = JSON.parse(response.body)
+  describe "POST #complete" do
+    it "coloca el trabajo CompleteTodoListJob en la cola" do
+      expect {
+        post :complete, params: { id: todo_list.id }
+      }.to have_enqueued_job(CompleteTodoListJob).with(todo_list.id)
+    end
 
-        aggregate_failures 'includes the id and name' do
-          expect(todo_lists.count).to eq(1)
-          expect(todo_lists[0].keys).to match_array(['id', 'name'])
-          expect(todo_lists[0]['id']).to eq(todo_list.id)
-          expect(todo_lists[0]['name']).to eq(todo_list.name)
-        end
-      end
+    it "redirecciona al index de todo_lists con un mensaje de éxito" do
+      post :complete, params: { id: todo_list.id }
+      expect(response).to redirect_to(todo_lists_path)
+      expect(flash[:notice]).to eq('Task is being complete in background.')
     end
   end
 end
