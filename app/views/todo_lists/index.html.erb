@@ -8,8 +8,9 @@
 <div>
   <% @todo_lists.each do |todo_list| %>
     <div>
+    <%= link_to todo_list_path(todo_list) do %>
       <strong>TodoList #<%= todo_list.id %></strong> | <%= todo_list.name %>
-
+    <% end %>
       <% if todo_list.todo_items.any? %>
         <ul>
           <% todo_list.todo_items.each do |item| %>
@@ -22,12 +23,6 @@
         <p>No TodoItems found for this TodoList.</p>
       <% end %>
 
-      <%= turbo_frame_tag dom_id(todo_list) do %>
-        <div>
-          <%= todo_list.name %>
-          <%= button_to 'Check as completed', complete_todo_list_path(todo_list), method: :post, data: { turbo: true } %>
-        </div>
-      <% end %>
     </div>
     <hr>
   <% end %>

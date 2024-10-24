@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
+
+  mount ActionCable.server => '/cable'
   
   namespace :api do
     resources :todo_lists, only: %i[index], path: :todolists

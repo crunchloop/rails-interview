@@ -40,12 +40,16 @@ class TodoListsController < ApplicationController
   def complete
     @todo_list = TodoList.find(params[:id])
 
-    # Disparar el trabajo en segundo plano
-    CompleteTodoListJob.perform_later(@todo_list.id)
+    # Obtener los IDs de los TodoItems seleccionados
+    selected_items = params[:selected_items]
+
+    # Encolar el trabajo en segundo plano para completar los items seleccionados
+    if selected_items.present?
+      CompleteTodoItemsJob.perform_later(@todo_list.id, selected_items)
+    end
 
     respond_to do |format|
-      format.html { redirect_to todo_lists_path, notice: 'Task is being complete in background.' }
-      format.turbo_stream # Para manejar la respuesta turbo
+      format.turbo_stream
     end
   end
 
@@ -60,14 +64,14 @@ class TodoListsController < ApplicationController
   end
 
   def generate_lists
-    3.times do
+    1.times do
       # Generar una TodoList con datos aleatorios
       todo_list = TodoList.create(
         name: Faker::Lorem.sentence(word_count: 3),
       )
 
-      # Generar un número aleatorio de TodoItems entre 1 y 1000
-      rand(1..10000).times do
+      # Generar un número aleatorio de TodoItems entre 1 y 50
+      rand(1..50).times do
         todo_list.todo_items.create(
           name: Faker::Lorem.sentence(word_count: 2),
           description: Faker::Lorem.sentence(word_count: 10),
