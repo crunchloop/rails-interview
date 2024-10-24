@@ -1,11 +1,12 @@
 class TodoListsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:create, :destroy, :complete]
 
   def index
     @todo_lists = TodoList.all
 
     respond_to do |format|
-      format.json  # Esto busca la vista index.json.jbuilder
+      format.html # Renderiza la vista index.html.erb por defecto
+      format.json # Renderiza la vista index.json.jbuilder cuando se solicita JSON
     end
   end
 
@@ -29,8 +30,20 @@ class TodoListsController < ApplicationController
     @todo_list = TodoList.find(params[:id])
     
     respond_to do |format|
-      format.json  
-      # Renderiza la vista usando show.json.jbuilder
+      format.html # Renderiza la vista index.html.erb por defecto
+      format.json # Renderiza la vista usando show.json.jbuilder    <-----------
+    end
+  end
+
+  def complete
+    @todo_list = TodoList.find(params[:id])
+
+    # Disparar el trabajo en segundo plano
+    CompleteTodoListJob.perform_later(@todo_list.id)
+
+    respond_to do |format|
+      format.html { redirect_to todo_lists_path, notice: 'Task is being complete in background.' }
+      format.turbo_stream # Para manejar la respuesta turbo
     end
   end
 

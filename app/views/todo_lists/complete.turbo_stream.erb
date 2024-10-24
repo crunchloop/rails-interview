@@ -1,0 +1,5 @@
+<%= turbo_stream.replace dom_id(@todo_list) do %>
+  <div>
+    <%= @todo_list.name %> - Completed!
+  </div>
+<% end %>
