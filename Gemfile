@@ -28,6 +28,9 @@ gem "jbuilder"
 # Background tasks
 gem "sidekiq"
 
+# Generate names for TodoItems
+gem "faker"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

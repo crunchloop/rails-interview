@@ -1,8 +1,10 @@
 class TodoListsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create, :destroy, :complete]
+  skip_before_action :verify_authenticity_token, only: [:create, :destroy, :complete, :generate_lists]
 
   def index
     @todo_lists = TodoList.all
+    @todo_list_count = TodoList.count
+
 
     respond_to do |format|
       format.html # Renderiza la vista index.html.erb por defecto
@@ -55,6 +57,26 @@ class TodoListsController < ApplicationController
     else
       render json: { error: "Failed to delete TodoList" }, status: :unprocessable_entity
     end
+  end
+
+  def generate_lists
+    3.times do
+      # Generar una TodoList con datos aleatorios
+      todo_list = TodoList.create(
+        name: Faker::Lorem.sentence(word_count: 3),
+      )
+
+      # Generar un número aleatorio de TodoItems entre 1 y 1000
+      rand(1..10000).times do
+        todo_list.todo_items.create(
+          name: Faker::Lorem.sentence(word_count: 2),
+          description: Faker::Lorem.sentence(word_count: 10),
+          is_completed: [false].sample
+        )
+      end
+    end
+
+    redirect_to todo_lists_path, notice: "30.000 TodoLists with TodoItems created ok."
   end
 
   private

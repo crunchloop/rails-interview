@@ -12,6 +12,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :todo_lists do
+    collection do
+      post :generate_lists
+    end
+  end
+  
+
   # resources :todo_lists, only: %i[index new create], path: :todolists
   resources :todo_lists, only: [:create, :index, :show, :new, :destroy]
 
