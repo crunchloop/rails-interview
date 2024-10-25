@@ -1,0 +1,61 @@
+<h1>New TodoList</h1>
+
+<%= form_with(model: @todo_list, local: true) do |form| %>
+  <% if @todo_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@todo_list.errors.count, "error") %> prohibited this todo_list from being saved:</h2>
+
+      <ul>
+      <% @todo_list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <h2>Todo Items</h2>
+    <div id="todo-items-list">
+      <%= form.fields_for :todo_items, @todo_list.todo_items.build do |item_form| %>
+        <div class="todo-item">
+          <div class="field">
+            <%= item_form.label :name, "Todo Item Name" %>
+            <%= item_form.text_field :name %>
+          </div>
+          <div class="field">
+            <%= item_form.label :description, "Todo Item Description" %>
+            <%= item_form.text_area :description %>
+          </div>
+          <div class="field">
+            <%= item_form.label :is_complete, "Is Complete?" %>
+            <%= item_form.check_box :is_complete %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <button type="button" id="add-todo-item">Add Todo Item</button>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Create TodoList' %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', todo_lists_path %>
+
+<script>
+  document.getElementById('add-todo-item').addEventListener('click', function() {
+    var todoItemsList = document.getElementById('todo-items-list');
+    var newTodoItem = todoItemsList.children[0].cloneNode(true); // Clonar el primer conjunto de campos
+    newTodoItem.querySelectorAll('input, textarea').forEach(function(input) {
+      input.value = ''; // Limpiar los campos clonados
+    });
+    todoItemsList.appendChild(newTodoItem); // Añadir al final de la lista
+  });
+</script>

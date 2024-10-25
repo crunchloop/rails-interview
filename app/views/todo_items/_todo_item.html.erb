@@ -1,0 +1,11 @@
+<li id="<%= dom_id(todo_item) %>" style="background-color: <%= todo_item.is_completed ? '#d4edda' : '#f8d7da' %>;">
+  <input type="checkbox" class="todo-item-checkbox" data-item-id="<%= todo_item.id %>" <%= todo_item.is_completed ? 'checked disabled' : '' %> />
+
+  <strong><%= todo_item.id %></strong>
+  <strong><%= todo_item.name %></strong>: <%= todo_item.description %>
+  <% if todo_item.is_completed %>
+    <span style="color: green;">Completed</span>
+  <% else %>
+    <span style="color: red;">Incompleted</span>
+  <% end %>
+</li>

@@ -1,0 +1,42 @@
+<h1><%= @todo_list.name %></h1>
+<%= turbo_stream_from @todo_list %>
+
+<!-- Checkbox global para seleccionar todos -->
+<input type="checkbox" id="select-all" /> Seleccionar todos
+
+<ul id="todo-items-list">
+  <% @todo_list.todo_items.each do |item| %>
+    <%= turbo_frame_tag dom_id(item) do %>
+      <%= render partial: 'todo_items/todo_item', locals: { todo_item: item } %>
+    <% end %>
+  <% end %>
+</ul>
+
+<!-- Botón para completar los seleccionados -->
+<%= button_to 'Complete Selected', complete_todo_list_path(@todo_list), method: :post, data: { turbo: true }, id: "complete-selected-btn" %>
+
+<script>
+  // Script para seleccionar todos los checkboxes cuando el checkbox global es marcado
+  document.getElementById('select-all').addEventListener('change', function(e) {
+    const checkboxes = document.querySelectorAll('.todo-item-checkbox');
+    checkboxes.forEach(checkbox => checkbox.checked = e.target.checked);
+  });
+
+  // Script para manejar la acción de completar seleccionados
+  document.getElementById('complete-selected-btn').addEventListener('click', function(e) {
+    e.preventDefault(); // Prevenir el comportamiento normal del botón
+
+    const selectedItems = Array.from(document.querySelectorAll('.todo-item-checkbox:checked')).map(checkbox => checkbox.dataset.itemId);
+
+    if (selectedItems.length > 0) {
+      fetch('<%= complete_todo_list_path(@todo_list) %>', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': '<%= form_authenticity_token %>'
+        },
+        body: JSON.stringify({ selected_items: selectedItems })
+      });
+    }
+  });
+</script>

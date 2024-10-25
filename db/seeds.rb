@@ -1,5 +1,14 @@
-TodoList.create(name: 'Setup Rails Application')
-TodoList.create(name: 'Setup Docker PG database')
-TodoList.create(name: 'Create todo_lists table')
-TodoList.create(name: 'Create TodoList model')
-TodoList.create(name: 'Create TodoList controller')
+# Crear una TodoList
+todo_list = TodoList.create!(name: "TodoList with 1000 TodoItems")
+
+# Crear 1000 TodoItems para esa TodoList
+1000.times do |i|
+  TodoItem.create!(
+    name: "TodoItem #{i + 1}",
+    description: Faker::Lorem.sentence(word_count: 10),
+    is_complete: [true, false].sample,
+    todo_list: todo_list
+  )
+end
+
+puts "Seed completed: Created 1 TodoList with 1000 TodoItems."

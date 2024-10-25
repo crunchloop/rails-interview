@@ -11,6 +11,9 @@ rails_interview_test
 # Ignore bundler config.
 /.bundle
 
+# Coverage
+/Coverage
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*

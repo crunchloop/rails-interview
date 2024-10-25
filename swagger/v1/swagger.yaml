@@ -1,0 +1,171 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/todo_lists":
+    get:
+      summary: Retrieve all todo lists
+      tags:
+      - TodoLists
+      responses:
+        '200':
+          description: Todo lists found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    total_items:
+                      type: integer
+                    todo_items:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          name:
+                            type: string
+                          is_completed:
+                            type: boolean
+                          completion_status:
+                            type: string
+        '500':
+          description: Internal server error
+    post:
+      summary: Create a new todo list
+      tags:
+      - TodoLists
+      parameters: []
+      responses:
+        '201':
+          description: TodoList created
+        '422':
+          description: Unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                todo_items_attributes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      description:
+                        type: string
+                      is_complete:
+                        type: boolean
+              required:
+              - name
+  "/todo_lists/{id}":
+    get:
+      summary: Retrieve a specific todo list
+      tags:
+      - TodoLists
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Todo list found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  total_items:
+                    type: integer
+                  todo_items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        is_completed:
+                          type: boolean
+                        completion_status:
+                          type: string
+        '404':
+          description: Todo list not found
+    delete:
+      summary: Delete a todo list
+      tags:
+      - TodoLists
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Todo list deleted
+        '404':
+          description: Todo list not found
+  "/todo_lists/{id}/complete":
+    post:
+      summary: Complete todo items in a list
+      tags:
+      - TodoLists
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Todo list marked as complete
+        '422':
+          description: Unprocessable entity (No items selected)
+        '404':
+          description: Todo list not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                selected_items:
+                  type: array
+                  items:
+                    type: integer
+              required:
+              - selected_items
+  "/todo_lists/generate_lists":
+    post:
+      summary: Generate random todo lists
+      tags:
+      - TodoLists
+      responses:
+        '200':
+          description: Todo lists generated
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com

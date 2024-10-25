@@ -1,0 +1,12 @@
+<% @todo_list.todo_items.each do |todo_item| %>
+  <%= turbo_stream.replace dom_id(todo_item) do %>
+    <li id="<%= dom_id(todo_item) %>">
+      <strong><%= todo_item.name %></strong>: <%= todo_item.description %>
+      <% if todo_item.is_completed %>
+        <span style="color: green;">Completada</span>
+      <% else %>
+        <span style="color: red;">Incompleta</span>
+      <% end %>
+    </li>
+  <% end %>
+<% end %>
