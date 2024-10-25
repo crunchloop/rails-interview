@@ -6,12 +6,12 @@ info:
 paths:
   "/todo_lists":
     get:
-      summary: list todo_lists
+      summary: Retrieve all todo lists
       tags:
       - TodoLists
       responses:
         '200':
-          description: successful
+          description: Todo lists found
           content:
             application/json:
               schema:
@@ -23,6 +23,8 @@ paths:
                       type: integer
                     name:
                       type: string
+                    total_items:
+                      type: integer
                     todo_items:
                       type: array
                       items:
@@ -32,33 +34,22 @@ paths:
                             type: integer
                           name:
                             type: string
-                          description:
-                            type: string
                           is_completed:
                             type: boolean
-                          created_at:
+                          completion_status:
                             type: string
-                            format: date-time
-                          updated_at:
-                            type: string
-                            format: date-time
-                        required:
-                        - id
-                        - name
-                        - is_completed
-                  required:
-                  - id
-                  - name
+        '500':
+          description: Internal server error
     post:
-      summary: create todo_list
+      summary: Create a new todo list
       tags:
       - TodoLists
       parameters: []
       responses:
         '201':
-          description: created
+          description: TodoList created
         '422':
-          description: unprocessable entity
+          description: Unprocessable entity
       requestBody:
         content:
           application/json:
@@ -76,27 +67,24 @@ paths:
                         type: string
                       description:
                         type: string
-                      is_completed:
+                      is_complete:
                         type: boolean
-                    required:
-                    - name
               required:
               - name
   "/todo_lists/{id}":
     get:
-      summary: show todo_list
+      summary: Retrieve a specific todo list
       tags:
       - TodoLists
       parameters:
       - name: id
         in: path
-        description: ID of the TodoList
         required: true
         schema:
           type: integer
       responses:
         '200':
-          description: successful
+          description: Todo list found
           content:
             application/json:
               schema:
@@ -106,6 +94,8 @@ paths:
                     type: integer
                   name:
                     type: string
+                  total_items:
+                    type: integer
                   todo_items:
                     type: array
                     items:
@@ -115,59 +105,65 @@ paths:
                           type: integer
                         name:
                           type: string
-                        description:
-                          type: string
                         is_completed:
                           type: boolean
-                      required:
-                      - id
-                      - name
-                required:
-                - id
-                - name
+                        completion_status:
+                          type: string
         '404':
-          description: not found
+          description: Todo list not found
     delete:
-      summary: delete todo_list
+      summary: Delete a todo list
       tags:
       - TodoLists
       parameters:
       - name: id
         in: path
-        description: ID of the TodoList
         required: true
         schema:
           type: integer
       responses:
         '200':
-          description: successful
+          description: Todo list deleted
         '404':
-          description: not found
+          description: Todo list not found
   "/todo_lists/{id}/complete":
     post:
-      summary: complete todo_list
+      summary: Complete todo items in a list
       tags:
       - TodoLists
       parameters:
       - name: id
         in: path
-        description: ID of the TodoList
         required: true
         schema:
           type: integer
       responses:
         '200':
-          description: successful
+          description: Todo list marked as complete
+        '422':
+          description: Unprocessable entity (No items selected)
         '404':
-          description: not found
+          description: Todo list not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                selected_items:
+                  type: array
+                  items:
+                    type: integer
+              required:
+              - selected_items
   "/todo_lists/generate_lists":
     post:
-      summary: generate todo_lists
+      summary: Generate random todo lists
       tags:
       - TodoLists
       responses:
-        '302':
-          description: redirect
+        '200':
+          description: Todo lists generated
 servers:
 - url: https://{defaultHost}
   variables:

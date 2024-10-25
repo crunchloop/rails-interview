@@ -1,6 +1,4 @@
-<%= link_to 'Add NEW Todo List', new_todo_list_path %>
-
-<%= button_to 'Generate 3 TodoList with random TodoItems inside', generate_lists_todo_lists_path, method: :post, data: { confirm: '¿Are you sure to create 30,000 TodoLists?' } %>
+<%= button_to 'Generate a TodoList with random TodoItems inside', generate_lists_todo_lists_path, method: :post, data: { confirm: '¿Are you sure to create 30,000 TodoLists?' } %>
 <div>
   <p>Total TodoLists: <%= @todo_list_count %></p>  <!-- Mostrar el número total de TodoLists -->
 </div>
