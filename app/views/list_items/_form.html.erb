@@ -1,5 +1,10 @@
 <%= turbo_frame_tag "new_list_item" do %>
   <%= form_with(model: [todo_list, list_item], class: "new-item-form") do |form| %>
+    <% if list_item.errors.any? %>
+      <div id="error_explanation" class="error-message">
+        <%= list_item.errors.full_messages.to_sentence %>
+      </div>
+    <% end %>
     <%= form.text_field :description, placeholder: "What needs to be done?", autofocus: true %>
     <%= form.submit "Add", class: "btn-primary" %>
   <% end %>

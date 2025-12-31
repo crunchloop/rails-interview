@@ -10,7 +10,13 @@ class ListItemsController < ApplicationController
         format.html { redirect_to @todo_list }
         format.turbo_stream
       else
-        format.html { render 'todo_lists/show', status: :unprocessable_entity }
+        format.html do
+          @todo_list = TodoList.includes(:list_items).find(@todo_list.id)
+          render 'todo_lists/show', status: :unprocessable_entity
+        end
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace('new_list_item', partial: 'list_items/form', locals: { todo_list: @todo_list, list_item: @list_item })
+        end
       end
     end
   end
