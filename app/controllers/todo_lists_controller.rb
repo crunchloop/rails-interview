@@ -1,5 +1,6 @@
 class TodoListsController < ApplicationController
-  before_action :set_todo_list, only: %i[show edit update destroy mark_all_done]
+  before_action :set_todo_list, only: %i[edit update destroy mark_all_done]
+  before_action :set_todo_list_with_items, only: %i[show]
 
   # GET /todolists
   def index
@@ -65,6 +66,10 @@ class TodoListsController < ApplicationController
   private
 
   def set_todo_list
+    @todo_list = TodoList.find(params[:id])
+  end
+
+  def set_todo_list_with_items
     @todo_list = TodoList.includes(:list_items).find(params[:id])
   end
 
