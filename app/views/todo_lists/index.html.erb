@@ -1,9 +1,20 @@
-<%= link_to 'Add Todo List', new_todo_list_path %>
+<header class="page-header">
+  <h1>Todo Lists</h1>
+  <%= link_to 'Add Todo List', new_todo_list_path, class: 'button' %>
+</header>
 
-<div>
+<section>
   <% @todo_lists.each do |todo_list| %>
-    <div>
-      #<%= todo_list.id %> | <%= todo_list.name %>
+    <div class="card">
+      <div class="card-header">
+        <h2 class="list-title"><%= todo_list.name %></h2>
+        <span class="list-id">#<%= todo_list.id %></span>
+      </div>
+
+      <div class="card-actions">
+        <%= link_to 'Add Item', new_todo_list_todo_item_path(todo_list), class: 'link' %>
+        <%= link_to 'View List', todo_list_path(todo_list), class: 'link primary' %>
+      </div>
     </div>
   <% end %>
-</div>
+</section>

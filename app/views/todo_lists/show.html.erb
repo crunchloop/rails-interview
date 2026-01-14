@@ -45,20 +45,36 @@
 
   <% if @todo_list.todo_items.any? %>
     <ul class="todo-items">
-      <% @todo_list.todo_items.each do |todo_item| %>
+      <% @todo_list.todo_items.limit(100).each do |todo_item| %>
         <li class="todo-item <%= 'completed' if todo_item.complete? %>">
-          <span><%= todo_item.title %></span>
-          <div class='actions'>
-            <%= link_to todo_list_todo_item_path(@todo_list, todo_item) do  %>
+          <div class='row'>
+            <% if todo_item.complete? %>
+              <i class="fa fa-check-square <%= 'disabled' if todo_item.complete? %>"></i>
+            <% else %>
+              <%= button_to(
+                    mark_as_complete_todo_list_todo_item_path(@todo_list, todo_item),
+                    method: :patch
+                  ) do %>
+                <i class="fa fa-square-o"></i>
+              <% end %>
+            <% end %>
+            <span><%= todo_item.title %></span>
+          </div>
+          <div class="row">
+            <%= link_to todo_list_todo_item_path(@todo_list, todo_item) do %>
               <i class="fa fa-eye"></i>
             <% end %>
-            <%= link_to edit_todo_list_todo_item_path(@todo_list, todo_item) do  %>
+
+            <%= link_to edit_todo_list_todo_item_path(@todo_list, todo_item) do %>
               <i class="fa fa-pencil"></i>
             <% end %>
-            <%= button_to todo_list_todo_item_path(@todo_list, todo_item),
+
+            <%= button_to(
+                  todo_list_todo_item_path(@todo_list, todo_item),
                   method: :delete,
                   class: "trash",
-                  data: { turbo_confirm: "¿Seguro que querés eliminar este item?" } do %>
+                  data: { turbo_confirm: "¿Seguro que querés eliminar este item?" }
+                ) do %>
               <i class="fa fa-trash"></i>
             <% end %>
           </div>
