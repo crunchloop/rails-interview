@@ -1,0 +1,58 @@
+<div class="page-header">
+  <h1>Todo Item</h1>
+  <%= link_to "Back to list", @todo_list, class: "link" %>
+</div>
+
+<% if notice %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+
+<% if alert %>
+  <p class="alert"><%= alert %></p>
+<% end %>
+
+<div class="card todo-item-card">
+  <div class="item">
+    <span class="label">Title</span>
+    <span class="value"><%= @todo_item.title %></span>
+  </div>
+
+  <div class="item">
+    <span class="label">Description</span>
+    <span class="value"><%= @todo_item.description %></span>
+  </div>
+
+  <div class="item">
+    <span class="label">Status</span>
+    <% if @todo_item.complete? %>
+      <span class="status completed">Completed</span>
+    <% else %>
+      <span class="status pending">Pending</span>
+    <% end %>
+  </div>
+</div>
+
+<div class="page-actions">
+  <% unless @todo_item.complete? %>
+    <%= button_to "Mark as complete",
+      mark_as_complete_todo_list_todo_item_path(@todo_list, @todo_item),
+      method: :put,
+      class: "button",
+      disabled: @todo_list.processing? 
+    %>
+  <% end %>
+
+  <%= link_to "Edit",
+    edit_todo_list_todo_item_path(@todo_list, @todo_item),
+    class: "button",
+    disabled: @todo_list.processing? 
+  %>
+
+  <%= button_to "Delete",
+    todo_list_todo_item_path(@todo_list, @todo_item),
+    method: :delete,
+    class: "button danger",
+    disabled: @todo_list.processing?, 
+    data: { turbo_confirm: "¿Seguro que querés eliminar este item?" }
+  %>
+</div>

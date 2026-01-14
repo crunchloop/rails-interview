@@ -1,0 +1,32 @@
+<div class="card">
+  <% todo_item.errors[:base].each do |message| %>
+    <p class="field-error"><%= message %></p>
+  <% end %>
+
+  <%= form_with(model: [todo_list, todo_item]) do |f| %>
+
+    <div class="form-field <%= 'has-error' if todo_item.errors[:title].any? %>">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "input" %>
+
+      <% todo_item.errors[:title].each do |message| %>
+        <p class="field-error"><%= message %></p>
+      <% end %>
+    </div>
+
+    <div class="form-field <%= 'has-error' if todo_item.errors[:description].any? %>">
+      <%= f.label :description %>
+      <%= f.text_area :description, rows: 4, class: "input" %>
+
+      <% todo_item.errors[:description].each do |message| %>
+        <p class="field-error"><%= message %></p>
+      <% end %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "Save todo item", class: "button" %>
+      <%= link_to "Cancel", todo_list_path(todo_list), class: "link" %>
+    </div>
+
+  <% end %>
+</div>
