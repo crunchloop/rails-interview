@@ -1,0 +1,158 @@
+.card {
+  background: white;
+  border: 1px solid rgba(179, 178, 186, 1);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.list-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.list-id {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.button {
+  background: var(--primary);
+  color: white;
+  border-radius: 0.375rem;
+  padding: 0.375rem 0.625rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--primary-hover);
+}
+
+.button.danger {
+  background: var(--error);
+}
+
+.button.danger:hover {
+  background: var(--error-hover);
+}
+
+.button:disabled {
+  cursor: auto;
+  background: var(--disabled);
+}
+
+.link {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+.link.primary {
+  font-weight: 500;
+}
+
+.header-actions {
+  font-size: 0.75rem;
+}
+
+.todo-items {
+  list-style: none;
+  margin-top: 0.75rem;
+}
+
+.todo-items .fa {
+  color: var(--primary);
+}
+
+.todo-items .row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.todo-items .todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.fa.disabled {
+  color: var(--disabled);
+}
+
+.todo-items .todo-item:last-child {
+  border-bottom: none;
+}
+
+.todo-items .todo-item.completed span {
+  color: var(--text-disabled);
+  text-decoration: line-through;
+}
+
+.todo-items .todo-item.completed .check {
+  color: #16a34a;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.empty {
+  color: var(--text-disabled);
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+.todo-item-card .item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.todo-item-card .label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.todo-item-card .value {
+  font-size: 1rem;
+}
+
+.todo-item-card .status {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.todo-item-card .status.completed {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.todo-item-card .status.pending {
+  background: var(--pending-bg);
+  color: var(--pending);
+}
