@@ -1,0 +1,4 @@
+en:
+  todo_lists:
+    mark_all_todo_items_as_complete:
+      marking_items: "Tasks are being marked as complete. You’ll receive an email once the process finishes."

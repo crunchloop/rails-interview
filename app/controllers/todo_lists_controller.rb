@@ -18,8 +18,7 @@ class TodoListsController < ApplicationController
   def mark_all_todo_items_as_complete
     CompleteTodoListItemsJob.perform_later(@todo_list.id)
 
-    redirect_to @todo_list,
-                notice: 'Tasks are being marked as complete. We’ll notify you by email once the process finishes.'
+    redirect_to @todo_list, notice: t('.marking_items')
   end
 
   private

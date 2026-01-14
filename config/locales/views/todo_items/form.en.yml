@@ -1,0 +1,5 @@
+en:
+  todo_items:
+    form:
+      save: "Save todo item"
+      cancel: "Cancel"

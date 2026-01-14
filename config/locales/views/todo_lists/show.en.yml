@@ -1,0 +1,15 @@
+en:
+  todo_lists:
+    show:
+      back: "Back to lists"
+
+      processing: "We are completing all your tasks. You’ll receive an email once it finishes."
+      failed: "Something went wrong while completing the tasks. Please try again."
+
+      items: "Items"
+      mark_all: "Mark all as complete"
+
+      confirm_delete: "Are you sure you want to delete this item?"
+      empty: "No todo items"
+
+      add_item: "Add new todo item"

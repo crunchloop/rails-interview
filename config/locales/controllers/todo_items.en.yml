@@ -1,0 +1,10 @@
+en:
+  todo_items:
+    create:
+      created: "Todo item created successfully."
+    update:
+      updated: "Todo item updated successfully."
+    destroy:
+      destroyed: "Todo item deleted."
+    mark_as_complete:
+      marked_as_complete: "Todo item marked as complete."

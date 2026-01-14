@@ -1,6 +1,6 @@
 <div class="page-header">
-  <h1>Todo Item</h1>
-  <%= link_to "Back to list", @todo_list, class: "link" %>
+  <h1><%= t('.title') %></h1>
+  <%= link_to t('.back'), @todo_list, class: "link" %>
 </div>
 
 <% if notice %>
@@ -13,46 +13,37 @@
 
 <div class="card todo-item-card">
   <div class="item">
-    <span class="label">Title</span>
+    <span class="label"><%= t('.fields.title') %></span>
     <span class="value"><%= @todo_item.title %></span>
   </div>
 
   <div class="item">
-    <span class="label">Description</span>
+    <span class="label"><%= t('.fields.description') %></span>
     <span class="value"><%= @todo_item.description %></span>
   </div>
 
   <div class="item">
-    <span class="label">Status</span>
+    <span class="label"><%= t('.fields.status') %></span>
     <% if @todo_item.complete? %>
-      <span class="status completed">Completed</span>
+      <span class="status completed"><%= t('.status.completed') %></span>
     <% else %>
-      <span class="status pending">Pending</span>
+      <span class="status pending"><%= t('.status.pending') %></span>
     <% end %>
   </div>
 </div>
 
 <div class="page-actions">
-  <% unless @todo_item.complete? %>
-    <%= button_to "Mark as complete",
-      mark_as_complete_todo_list_todo_item_path(@todo_list, @todo_item),
-      method: :put,
-      class: "button",
-      disabled: @todo_list.processing? 
-    %>
-  <% end %>
-
-  <%= link_to "Edit",
+  <%= link_to t('.edit'),
     edit_todo_list_todo_item_path(@todo_list, @todo_item),
     class: "button",
-    disabled: @todo_list.processing? 
+    disabled: @todo_list.processing?
   %>
 
-  <%= button_to "Delete",
+  <%= button_to t('.delete'),
     todo_list_todo_item_path(@todo_list, @todo_item),
     method: :delete,
     class: "button danger",
-    disabled: @todo_list.processing?, 
-    data: { turbo_confirm: "¿Seguro que querés eliminar este item?" }
+    disabled: @todo_list.processing?,
+    data: { turbo_confirm: t('.confirm_delete') }
   %>
 </div>

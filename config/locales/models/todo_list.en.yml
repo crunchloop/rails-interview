@@ -1,0 +1,8 @@
+en:
+  activerecord:
+    models:
+      todo_list: "Todo list"
+
+    attributes:
+      todo_list:
+        items_completion_status: "Items Completition Status"

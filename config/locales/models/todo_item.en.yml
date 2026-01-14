@@ -1,0 +1,18 @@
+en:
+  activerecord:
+    models:
+      todo_item: "Todo item"
+
+    attributes:
+      todo_item:
+        title: "Title"
+        complete: "Completed"
+
+    errors:
+      models:
+        todo_item:
+          attributes:
+            title:
+              blank: "Can't be blank"
+            complete:
+              cannot_uncomplete: "Can't be changed once it is completed"

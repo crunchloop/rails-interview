@@ -1,0 +1,7 @@
+en:
+  todo_lists:
+    index:
+      title: "Todo Lists"
+      add: "Add Todo List"
+      add_item: "Add Item"
+      view_list: "View List"

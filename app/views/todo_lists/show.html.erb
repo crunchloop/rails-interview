@@ -2,7 +2,7 @@
   <h1><%= @todo_list.name %></h1>
 
   <div class="header-actions">
-    <%= link_to "Back to lists", todo_lists_path, class: "link" %>
+    <%= link_to t('.back'), todo_lists_path, class: "link" %>
   </div>
 </div>
 
@@ -16,25 +16,24 @@
 
 <% if @todo_list.processing? %>
   <div class="alert">
-    Estamos completando todas tus tareas.
-    Te avisaremos por email cuando termine.
+    <%= t('.processing') %>
   </div>
 <% end %>
 
 <% if @todo_list.failed? %>
   <div class="alert">
-    Algo falló al completar las tareas. Intenta de nuevo
+    <%= t('.failed') %>
   </div>
 <% end %>
 
 
 <div class="card">
   <div class="card-header">
-    <h2>Items</h2>
+    <h2><%= t('.items') %></h2>
 
     <% if @todo_list.todo_items.any? %>
       <%= button_to(
-        "Mark all as complete",
+        t('.mark_all'),
         mark_all_todo_items_as_complete_todo_list_path(@todo_list),
         method: :post,
         class: "button",
@@ -73,7 +72,7 @@
                   todo_list_todo_item_path(@todo_list, todo_item),
                   method: :delete,
                   class: "trash",
-                  data: { turbo_confirm: "¿Seguro que querés eliminar este item?" }
+                  data: { turbo_confirm: t('.confirm_delete') }
                 ) do %>
               <i class="fa fa-trash"></i>
             <% end %>
@@ -82,10 +81,10 @@
       <% end %>
     </ul>
   <% else %>
-    <p class="empty">No todo items</p>
+    <p class="empty"><%= t('.empty') %></p>
   <% end %>
 </div>
 
-<%= link_to "Add new todo item",
+<%= link_to t('.add_item'),
   new_todo_list_todo_item_path(@todo_list),
   class: "button" %>

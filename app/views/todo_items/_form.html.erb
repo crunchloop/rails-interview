@@ -24,8 +24,8 @@
     </div>
 
     <div class="form-actions">
-      <%= f.submit "Save todo item", class: "button" %>
-      <%= link_to "Cancel", todo_list_path(todo_list), class: "link" %>
+      <%= f.submit t('.save'), class: "button" %>
+      <%= link_to t('.cancel'), todo_list_path(todo_list), class: "link" %>
     </div>
 
   <% end %>

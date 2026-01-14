@@ -8,10 +8,11 @@ class TodoItemsController < ApplicationController
 
   def create
     @todo_item = @todo_list.todo_items.build(todo_item_params)
+
     if @todo_item.save
-      redirect_to [@todo_list, @todo_item], notice: 'Todo item created correctly'
+      redirect_to [@todo_list, @todo_item], notice: t('.created')
     else
-      render :new, status: :unprocessable_entity, alert: @todo_item.errors
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -21,22 +22,22 @@ class TodoItemsController < ApplicationController
 
   def update
     if @todo_item.update(todo_item_params)
-      redirect_to [@todo_list, @todo_item], notice: 'todo item updated correctly'
+      redirect_to [@todo_list, @todo_item], notice: t('.updated')
     else
-      render :edit, status: :unprocessable_entity, alert: @todo_item.errors
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @todo_item.destroy
-    redirect_to @todo_list, notice: 'Todo item deleted.'
+    redirect_to @todo_list, notice: t('.destroyed')
   end
 
   def mark_as_complete
     if @todo_item.update(complete: true)
-      redirect_to @todo_list, notice: 'Todo item marked as complete.'
+      redirect_to @todo_list, notice: t('.marked_as_complete')
     else
-      redirect_to @todo_list, alert: @todo_item.errors.full_sentences
+      redirect_to @todo_list, alert: @todo_item.errors.full_messages.to_sentence
     end
   end
 
