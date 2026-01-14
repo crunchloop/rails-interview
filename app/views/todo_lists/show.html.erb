@@ -1,0 +1,75 @@
+<div class="page-header">
+  <h1><%= @todo_list.name %></h1>
+
+  <div class="header-actions">
+    <%= link_to "Back to lists", todo_lists_path, class: "link" %>
+  </div>
+</div>
+
+<% if notice %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+
+<% if alert %>
+  <p class="alert"><%= alert %></p>
+<% end %>
+
+<% if @todo_list.processing? %>
+  <div class="alert">
+    Estamos completando todas tus tareas.
+    Te avisaremos por email cuando termine.
+  </div>
+<% end %>
+
+<% if @todo_list.failed? %>
+  <div class="alert">
+    Algo falló al completar las tareas. Intenta de nuevo
+  </div>
+<% end %>
+
+
+<div class="card">
+  <div class="card-header">
+    <h2>Items</h2>
+
+    <% if @todo_list.todo_items.any? %>
+      <%= button_to(
+        "Mark all as complete",
+        mark_all_todo_items_as_complete_todo_list_path(@todo_list),
+        method: :post,
+        class: "button",
+        disabled: @todo_list.processing? || !@todo_list.has_uncompleted_items?
+      ) %>
+    <% end %>
+  </div>
+
+  <% if @todo_list.todo_items.any? %>
+    <ul class="todo-items">
+      <% @todo_list.todo_items.each do |todo_item| %>
+        <li class="todo-item <%= 'completed' if todo_item.complete? %>">
+          <span><%= todo_item.title %></span>
+          <div class='actions'>
+            <%= link_to todo_list_todo_item_path(@todo_list, todo_item) do  %>
+              <i class="fa fa-eye"></i>
+            <% end %>
+            <%= link_to edit_todo_list_todo_item_path(@todo_list, todo_item) do  %>
+              <i class="fa fa-pencil"></i>
+            <% end %>
+            <%= button_to todo_list_todo_item_path(@todo_list, todo_item),
+                  method: :delete,
+                  class: "trash",
+                  data: { turbo_confirm: "¿Seguro que querés eliminar este item?" } do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="empty">No todo items</p>
+  <% end %>
+</div>
+
+<%= link_to "Add new todo item",
+  new_todo_list_todo_item_path(@todo_list),
+  class: "button" %>
