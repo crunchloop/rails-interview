@@ -48,7 +48,7 @@
         <li class="todo-item <%= 'completed' if todo_item.complete? %>">
           <div class='row'>
             <% if todo_item.complete? %>
-              <i class="fa fa-check-square <%= 'disabled' if todo_item.complete? %>"></i>
+              <i class="fa fa-check-square disabled"></i>
             <% else %>
               <%= button_to(
                     mark_as_complete_todo_list_todo_item_path(@todo_list, todo_item),
