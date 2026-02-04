@@ -10,7 +10,7 @@
     <%= form_with model: @todo_list, class: "space-y-5" do |f| %>
       <div class="space-y-2">
         <%= f.label :name, class: "peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium text-slate-700", required: true %>
-        <%= f.text_field :name, class: "flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11", placeholder: "Enter list name...", required: true %>
+        <%= f.text_field :name, class: "flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11", placeholder: "Enter list name...", autofocus: true, required: true %>
       </div>
 
       <div class="space-y-2">
