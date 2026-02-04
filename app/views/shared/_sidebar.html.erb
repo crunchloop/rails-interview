@@ -1,4 +1,4 @@
-<aside class="fixed md:relative inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 p-4 space-y-2 transform transition-transform duration-300 ease-in-out -translate-x-full md:translate-x-0">
+<aside class="fixed md:relative inset-y-0 left-0 z-50 w-128 bg-white border-r border-slate-200 p-4 space-y-2 transform transition-transform duration-300 ease-in-out -translate-x-full md:translate-x-0">
   <div class="mb-6">
     <div class="flex items-center justify-between mb-4">
       <h2 class="text-lg font-semibold text-slate-800">Lists</h2>
@@ -15,10 +15,16 @@
   </div>
   <div class="space-y-1">
     <% @todo_lists.each do |todo_list| %>
-      <%= link_to todo_list_path(todo_list), class: "w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-600 hover:bg-slate-50 cursor-pointer" do %>
-        <%= icon("list", class: "w-5 h-5") %>
-        <span class="flex-1 text-left font-medium"><%= todo_list.name %></span>
-      <% end %>
+      <div class="w-full flex items-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 group text-slate-600 hover:bg-slate-50">
+        <%= link_to todo_list_path(todo_list), class: "flex items-center gap-3 flex-1 min-w-0" do %>
+          <%= icon("list", class: "w-5 h-5 flex-shrink-0") %>
+          <span class="flex-1 text-left font-medium truncate"><%= todo_list.name %></span>
+        <% end %>
+
+        <%= link_to edit_todo_list_path(todo_list), class: "opacity-0 group-hover:opacity-100 p-1 hover:bg-white/50 rounded transition-opacity" do %>
+          <%= icon("settings", class: "w-4 h-4") %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </aside>

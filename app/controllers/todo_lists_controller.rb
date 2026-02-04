@@ -1,5 +1,5 @@
 class TodoListsController < ApplicationController
-  before_action :set_todo_lists # ToDO: add 'only' later
+  before_action :set_todo_lists, only: %i[ show new edit ]
   before_action :set_todo_list, only: %i[ edit update destroy ]
 
   def show
