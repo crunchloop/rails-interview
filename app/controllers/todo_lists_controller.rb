@@ -17,14 +17,20 @@ class TodoListsController < ApplicationController
     respond_to :html
   end
 
-  # GET /todolists/new
   def new
     @todo_list = TodoList.new
+  end
 
-    respond_to :html
+  def create
+    todo_list = TodoList.create!(todo_list_params)
+    redirect_to todo_list_url(todo_list)
   end
 
   private
+
+  def todo_list_params
+    params.require(:todo_list).permit(%i[ name description ])
+  end
 
   def set_todo_lists
     @todo_lists = TodoList.all

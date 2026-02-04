@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_02_03_201019) do
+ActiveRecord::Schema[7.0].define(version: 2026_02_04_183950) do
   create_table "todo_items", force: :cascade do |t|
     t.string "name", null: false
     t.boolean "is_completed", default: false
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2026_02_03_201019) do
 
   create_table "todo_lists", force: :cascade do |t|
     t.string "name", null: false
+    t.text "description"
   end
 
   add_foreign_key "todo_items", "todo_lists"
