@@ -1,0 +1,7 @@
+<div class="group flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-100 hover:border-slate-200 hover:shadow-sm transition-all duration-300" style="opacity: 1; transform: none; transform-origin: 50% 50% 0px;">
+  <button class="flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 border-slate-300 hover:border-slate-400"></button>
+  <div class="flex-1 flex items-center gap-2"><span class="text-base transition-all duration-300 text-slate-700 <%= 'line-through' if todo_item.is_completed? %>"><%= todo_item.name %></span></div>
+  <button class="opacity-0 group-hover:opacity-100 p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all duration-200">
+    <%= icon("trash2", class: "w-4 h-4") %>
+  </button>
+</div>

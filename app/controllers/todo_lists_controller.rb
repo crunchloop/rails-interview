@@ -4,7 +4,10 @@ class TodoListsController < ApplicationController
   def show
     @todo_list = TodoList.includes(:todo_items).find(params[:id])
     @todo_items = @todo_list.todo_items
-    @todo_item = @todo_list.todo_items.build
+    @todo_item = TodoItem.new
+
+    @pending_todo_items = @todo_items.pending
+    @completed_todo_items = @todo_items.completed
   end
 
   # GET /todolists

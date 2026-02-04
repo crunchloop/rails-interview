@@ -1,16 +1,36 @@
-<h1><%= @todo_list.name %></h1>
-
-<%= form_with model: [@todo_list, @todo_item] do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, required: true %>
-
-  <%= f.submit %>
-<% end %>
-
-<% if @todo_items.any? %>
-  <ul>
-    <% @todo_items.each do |todo_item| %>
-      <li><%= todo_item.name %></li>
+<div class="flex-1 w-full md:max-w-3xl mx-auto px-4 sm:px-5 py-8 md:py-12 lg:py-20">
+  <div class="text-center mb-8 md:mb-10" style="opacity: 1; transform: none;">
+    <div class="items-center justify-between mb-5 md:block">
+      <div class="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-white rounded-2xl shadow-sm border border-slate-100">
+        <%= icon("list-todo", class: "w-7 h-7 md:w-8 md:h-8 text-slate-700") %>
+      </div>
+      <div class="w-10 md:hidden"></div>
+    </div>
+    <h1 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-800 tracking-tight"><%= @todo_list.name %></h1>
+    <p class="text-sm md:text-base text-slate-500 mt-2">Stay organized, stay productive</p>
+  </div>
+  <div class="flex items-center justify-center gap-6 mb-8" style="opacity: 1;">
+    <div class="flex items-center gap-2 text-sm text-slate-500">
+      <%= icon("circle", class: "w-4 h-4") %>
+      <span><%= @pending_todo_items.size %> pending</span>
+    </div>
+    <div class="w-px h-4 bg-slate-200"></div>
+    <div class="flex items-center gap-2 text-sm text-slate-500">
+      <%= icon("circle-check", class: "w-4 h-4") %>
+      <span><%= @pending_todo_items.size %> completed</span>
+    </div>
+  </div>
+  <div class="mb-6">
+    <%= form_with model: [@todo_list, @todo_item], class: "relative" do |f| %>
+      <div class="flex items-center gap-3 bg-white rounded-2xl border border-slate-200 p-2 transition-colors duration-300" style="box-shadow: rgba(0, 0, 0, 0.04) 0px 1px 3px;">
+        <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center">
+          <%= icon("plus", class: "w-5 h-5 text-slate-400") %>
+        </div>
+        <%= f.text_field :name, class: "flex-1 bg-transparent text-slate-700 placeholder:text-slate-400 outline-none text-base py-2", placeholder: "Add a new task...", autofocus: true, required: true %>
+      </div>
     <% end %>
-  </ul>
-<% end %>
+  </div>
+  <div class="space-y-3">
+    <%= render partial: "todo_item/todo_item", collection: @todo_items %>
+  </div>
+</div>
