@@ -1,0 +1,13 @@
+<div class="flex items-center justify-center gap-6 mb-8" style="opacity: 1;">
+  <div class="flex items-center gap-2 text-sm text-slate-500">
+    <%= icon("circle", class: "w-4 h-4") %>
+    <span><%= pending_todo_items.size %> pending</span>
+  </div>
+  <div class="w-px h-4 bg-slate-200"></div>
+  <div class="flex items-center gap-2 text-sm text-slate-500">
+    <%= icon("circle-check", class: "w-4 h-4") %>
+    <span><%= completed_todo_items.size %> completed</span>
+  </div>
+</div>
+
+<div data-controller="lucide"></div>

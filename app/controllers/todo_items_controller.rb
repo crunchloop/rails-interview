@@ -17,17 +17,17 @@ class TodoItemsController < ApplicationController
 
   def destroy
     @todo_item.destroy
-    render turbo_stream: turbo_stream.remove(helpers.dom_id(@todo_item, :edit))
+    set_todo_list_stats
   end
 
   def complete
     @todo_item.complete!
-    redirect_to @todo_list
+    set_todo_list_stats
   end
 
   def undo_complete
     @todo_item.undo_complete!
-    redirect_to @todo_list
+    set_todo_list_stats
   end
 
   private
@@ -42,5 +42,10 @@ class TodoItemsController < ApplicationController
 
   def set_todo_item
     @todo_item = @todo_list.todo_items.find(params[:id])
+  end
+
+  def set_todo_list_stats
+    @completed_todo_items = @todo_list.todo_items.completed
+    @pending_todo_items = @todo_list.todo_items.pending
   end
 end

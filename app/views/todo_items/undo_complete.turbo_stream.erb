@@ -1,0 +1,2 @@
+<%= turbo_stream.update(dom_id(@todo_item), partial: "todo_items/todo_item", locals: { todo_item: @todo_item, todo_list: @todo_item.todo_list }) %>
+<%= turbo_stream.update("todo_list_stats", partial: "todo_lists/stats", locals: { pending_todo_items: @pending_todo_items, completed_todo_items: @completed_todo_items }) %>

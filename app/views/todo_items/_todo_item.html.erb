@@ -1,25 +1,21 @@
-<% todo_list = todo_item.todo_list %>
-
-<%= turbo_frame_tag dom_id(todo_item, :edit) do %>
-  <div class="group flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-100 hover:border-slate-200 hover:shadow-sm transition-all duration-300" style="opacity: 1; transform: none; transform-origin: 50% 50% 0px;">
-    <% if todo_item.is_completed? %>
-      <%= button_to [:undo_complete, todo_list, todo_item], method: :patch, class: "flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 bg-slate-800 border-slate-800" do %>
-        <div style="transform: none;">
-          <%= icon("check", class: "w-3.5 h-3.5 text-white") %>
-        </div>
-      <% end %>
-    <% else %>
-      <%= button_to "", [:complete, todo_list, todo_item], method: :patch, class: "flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 border-slate-300 hover:border-slate-400" %>
-    <% end%>
-
-    <div class="flex-1 flex items-center gap-2"><span class="text-base transition-all duration-300 text-slate-700 <%= 'line-through' if todo_item.is_completed? %>"><%= todo_item.name %></span></div>
-
-    <%= link_to edit_todo_list_todo_item_path(todo_item.todo_list, todo_item), class: "opacity-0 group-hover:opacity-100 p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all duration-200 cursor-pointer", data: { turbo_frame: dom_id(todo_item, :edit) } do %>
-      <%= icon("pencil", class: "w-4 h-4") %>
+<div class="group flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-100 hover:border-slate-200 hover:shadow-sm transition-all duration-300" style="opacity: 1; transform: none; transform-origin: 50% 50% 0px;">
+  <% if todo_item.is_completed? %>
+    <%= button_to [:undo_complete, todo_list, todo_item], method: :patch, class: "flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 bg-slate-800 border-slate-800" do %>
+      <div style="transform: none;">
+        <%= icon("check", class: "w-3.5 h-3.5 text-white") %>
+      </div>
     <% end %>
+  <% else %>
+    <%= button_to "", [:complete, todo_list, todo_item], method: :patch, class: "flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 border-slate-300 hover:border-slate-400" %>
+  <% end%>
 
-    <%= button_to todo_list_todo_item_path(todo_item.todo_list, todo_item), method: :delete, class: "opacity-0 group-hover:opacity-100 p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all duration-200 cursor-pointer" do %>
-      <%= icon("trash2", class: "w-4 h-4") %>
-    <% end %>
-  </div>
-<% end%>
+  <div class="flex-1 flex items-center gap-2"><span class="text-base transition-all duration-300 text-slate-700 <%= 'line-through' if todo_item.is_completed? %>"><%= todo_item.name %></span></div>
+
+  <%= link_to edit_todo_list_todo_item_path(todo_item.todo_list, todo_item), class: "opacity-0 group-hover:opacity-100 p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all duration-200 cursor-pointer", data: { turbo_frame: dom_id(todo_item) } do %>
+    <%= icon("pencil", class: "w-4 h-4") %>
+  <% end %>
+
+  <%= button_to todo_list_todo_item_path(todo_item.todo_list, todo_item), method: :delete, class: "opacity-0 group-hover:opacity-100 p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all duration-200 cursor-pointer" do %>
+    <%= icon("trash2", class: "w-4 h-4") %>
+  <% end %>
+</div>

@@ -1,0 +1,2 @@
+<%= turbo_stream.remove(dom_id(@todo_item)) %>
+<%= turbo_stream.update("todo_list_stats", partial: "todo_lists/stats", locals: { pending_todo_items: @pending_todo_items, completed_todo_items: @completed_todo_items }) %>

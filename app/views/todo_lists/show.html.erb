@@ -11,17 +11,11 @@
       <p class="text-sm md:text-base text-slate-500 mt-2"><%= @todo_list.description %></p>
     <% end%>
   </div>
-  <div class="flex items-center justify-center gap-6 mb-8" style="opacity: 1;">
-    <div class="flex items-center gap-2 text-sm text-slate-500">
-      <%= icon("circle", class: "w-4 h-4") %>
-      <span><%= @pending_todo_items.size %> pending</span>
-    </div>
-    <div class="w-px h-4 bg-slate-200"></div>
-    <div class="flex items-center gap-2 text-sm text-slate-500">
-      <%= icon("circle-check", class: "w-4 h-4") %>
-      <span><%= @completed_todo_items.size %> completed</span>
-    </div>
-  </div>
+
+  <%= turbo_frame_tag "todo_list_stats" do %>
+    <%= render "stats", pending_todo_items: @pending_todo_items, completed_todo_items: @completed_todo_items  %>
+  <% end %>
+
   <div class="mb-6">
     <%= form_with model: [@todo_list, @todo_item], class: "relative" do |f| %>
       <div class="flex items-center gap-3 bg-white rounded-2xl border border-slate-200 p-2 transition-colors duration-300" style="box-shadow: rgba(0, 0, 0, 0.04) 0px 1px 3px;">
@@ -34,7 +28,11 @@
   </div>
   <div class="space-y-3">
     <% if @todo_items.any? %>
-      <%= render partial: "todo_items/todo_item", collection: @todo_items %>
+      <% @todo_items.each do |todo_item| %>
+        <%= turbo_frame_tag dom_id(todo_item) do %>
+          <%= render partial: "todo_items/todo_item", locals: { todo_item: todo_item, todo_list: todo_item.todo_list } %>
+        <% end %>
+      <% end %>
     <% else %>
       <div class="text-center py-16" style="opacity: 1;">
         <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-slate-100 flex items-center justify-center">
