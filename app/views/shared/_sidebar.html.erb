@@ -6,10 +6,6 @@
         <%= icon("chevron-left", class: "w-5 h-5") %>
       </button>
     </div>
-    <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 bg-slate-800 text-white shadow-sm">
-      <%= icon("inbox", class: "w-5 h-5") %>
-      <span class="flex-1 text-left font-medium">All Tasks</span><span class="px-2 py-0.5 text-xs rounded-full bg-white/20 text-white">1</span>
-    </button>
   </div>
   <div class="space-y-1">
     <% @todo_lists.each do |todo_list| %>
@@ -20,10 +16,10 @@
     <% end %>
   </div>
   <div class="pt-4">
-    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full">
+    <%= link_to new_todo_list_path, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full" do %>
       <%= icon("plus", class: "w-4 h-4 mr-2") %>
       New List
-    </button>
+    <% end %>
   </div>
 </aside>
 
@@ -31,6 +27,7 @@
   <%= icon("menu", class: "w-10 h-10") %>
 </button>
 
+<%# ToDo: move this to a Stimulus controller %>
 <script>
   const sidebar = document.querySelector("aside")
   const openBtn = document.querySelector(".lucide-menu")?.closest("button")
