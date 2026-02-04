@@ -206,6 +206,12 @@ GEM
     sqlite3 (1.7.3-x86_64-linux)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    tailwindcss-rails (4.4.0)
+      railties (>= 7.0.0)
+      tailwindcss-ruby (~> 4.0)
+    tailwindcss-ruby (4.1.18-arm64-darwin)
+    tailwindcss-ruby (4.1.18-x86_64-darwin)
+    tailwindcss-ruby (4.1.18-x86_64-linux)
     thor (1.2.1)
     timeout (0.3.2)
     turbo-rails (1.4.0)
@@ -250,6 +256,7 @@ DEPENDENCIES
   sprockets-rails
   sqlite3 (~> 1.6)
   stimulus-rails
+  tailwindcss-rails (~> 4.4)
   turbo-rails
   tzinfo-data
   web-console

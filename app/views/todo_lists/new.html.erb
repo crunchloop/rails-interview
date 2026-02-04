@@ -1,0 +1,84 @@
+<div class="flex-1 w-full md:max-w-3xl mx-auto px-4 sm:px-5 py-8 md:py-12 lg:py-20">
+  <div class="text-center mb-8 md:mb-10" style="opacity: 1; transform: none;">
+    <div class="items-center justify-between mb-5 md:block">
+      <div class="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-white rounded-2xl shadow-sm border border-slate-100">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-todo w-7 h-7 md:w-8 md:h-8 text-slate-700">
+          <rect x="3" y="5" width="6" height="6" rx="1"></rect>
+          <path d="m3 17 2 2 4-4"></path>
+          <path d="M13 6h8"></path>
+          <path d="M13 12h8"></path>
+          <path d="M13 18h8"></path>
+        </svg>
+      </div>
+      <div class="w-10 md:hidden"></div>
+    </div>
+    <h1 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-800 tracking-tight">My Tasks</h1>
+    <p class="text-sm md:text-base text-slate-500 mt-2">Stay organized, stay productive</p>
+  </div>
+  <div class="flex items-center justify-center gap-6 mb-8" style="opacity: 1;">
+    <div class="flex items-center gap-2 text-sm text-slate-500">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle w-4 h-4">
+        <circle cx="12" cy="12" r="10"></circle>
+      </svg>
+      <span>2 pending</span>
+    </div>
+    <div class="w-px h-4 bg-slate-200"></div>
+    <div class="flex items-center gap-2 text-sm text-slate-500">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check w-4 h-4">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="m9 12 2 2 4-4"></path>
+      </svg>
+      <span>0 completed</span>
+    </div>
+  </div>
+  <div class="mb-6">
+    <form class="relative">
+      <div class="flex items-center gap-3 bg-white rounded-2xl border border-slate-200 p-2 transition-colors duration-300" style="box-shadow: rgba(0, 0, 0, 0.04) 0px 1px 3px;">
+        <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus w-5 h-5 text-slate-400">
+            <path d="M5 12h14"></path>
+            <path d="M12 5v14"></path>
+          </svg>
+        </div>
+        <input type="text" placeholder="Add a new task..." class="flex-1 bg-transparent text-slate-700 placeholder:text-slate-400 outline-none text-base py-2" value="">
+      </div>
+    </form>
+  </div>
+  <div class="space-y-3">
+    <div class="group flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-100 hover:border-slate-200 hover:shadow-sm transition-all duration-300" style="opacity: 1; transform: none; transform-origin: 50% 50% 0px;">
+      <button class="flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 border-slate-300 hover:border-slate-400"></button>
+      <div class="flex-1 flex items-center gap-2">
+        <span class="text-base transition-all duration-300 text-slate-700">Sarasa</span>
+        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-medium bg-purple-100 text-purple-700">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user w-3 h-3">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          Personal
+        </span>
+      </div>
+      <button class="opacity-0 group-hover:opacity-100 p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all duration-200">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2 w-4 h-4">
+          <path d="M3 6h18"></path>
+          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+          <line x1="10" x2="10" y1="11" y2="17"></line>
+          <line x1="14" x2="14" y1="11" y2="17"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="group flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-100 hover:border-slate-200 hover:shadow-sm transition-all duration-300" style="opacity: 1; transform: none; transform-origin: 50% 50% 0px;">
+      <button class="flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 border-slate-300 hover:border-slate-400"></button>
+      <div class="flex-1 flex items-center gap-2"><span class="text-base transition-all duration-300 text-slate-700">Second</span></div>
+      <button class="opacity-0 group-hover:opacity-100 p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all duration-200">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2 w-4 h-4">
+          <path d="M3 6h18"></path>
+          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+          <line x1="10" x2="10" y1="11" y2="17"></line>
+          <line x1="14" x2="14" y1="11" y2="17"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
