@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
 
   resources :todo_lists, except: %i[index] do
-    resources :todo_items, only: %i[create destroy] do
+    resources :todo_items, only: %i[create edit update destroy] do
       patch :complete, on: :member
       patch :undo_complete, on: :member
     end

@@ -1,9 +1,18 @@
 class TodoItemsController < ApplicationController
-  before_action :set_todo_list, only: %i[ create destroy complete undo_complete ]
-  before_action :set_todo_item, only: %i[ destroy complete undo_complete ]
+  before_action :set_todo_list, only: %i[ create edit update destroy complete undo_complete ]
+  before_action :set_todo_item, only: %i[ edit update destroy complete undo_complete ]
 
   def create
     @todo_list.todo_items.create!(todo_item_params)
+    redirect_to @todo_list
+  end
+
+  def edit
+    render turbo_stream: turbo_stream.replace(helpers.dom_id(@todo_item, :edit), partial: "todo_items/form", locals: { todo_list: @todo_list, todo_item: @todo_item })
+  end
+
+  def update
+    @todo_item.update!(todo_item_params)
     redirect_to @todo_list
   end
 
@@ -36,5 +45,3 @@ class TodoItemsController < ApplicationController
     @todo_item = @todo_list.todo_items.find(params[:id])
   end
 end
-
-# TODO: edit, update, toggle_completion

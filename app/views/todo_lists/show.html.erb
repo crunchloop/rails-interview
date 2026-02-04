@@ -34,7 +34,7 @@
   </div>
   <div class="space-y-3">
     <% if @todo_items.any? %>
-      <%= render partial: "todo_item/todo_item", collection: @todo_items %>
+      <%= render partial: "todo_items/todo_item", collection: @todo_items %>
     <% else %>
       <div class="text-center py-16" style="opacity: 1;">
         <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-slate-100 flex items-center justify-center">
