@@ -1,6 +1,6 @@
 class TodoListsController < ApplicationController
   before_action :set_todo_lists # ToDO: add 'only' later
-  before_action :set_todo_list, only: %i[ edit update destroy]
+  before_action :set_todo_list, only: %i[ edit update destroy ]
 
   def show
     @todo_list = TodoList.includes(:todo_items).find(params[:id])
@@ -24,6 +24,8 @@ class TodoListsController < ApplicationController
   end
 
   def update
+    @todo_list.update!(todo_list_params)
+    redirect_to todo_list_url(@todo_list)
   end
 
   def destroy
