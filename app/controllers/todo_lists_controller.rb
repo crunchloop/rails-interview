@@ -10,13 +10,6 @@ class TodoListsController < ApplicationController
     @completed_todo_items = @todo_items.completed
   end
 
-  # GET /todolists
-  def index
-    @todo_lists = TodoList.all
-
-    respond_to :html
-  end
-
   def new
     @todo_list = TodoList.new
   end

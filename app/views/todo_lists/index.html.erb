@@ -1,9 +1,0 @@
-<%= link_to 'Add Todo List', new_todo_list_path %>
-
-<div>
-  <% @todo_lists.each do |todo_list| %>
-    <div>
-      <%= link_to "##{ todo_list.id } | #{ todo_list.name }", todo_list %>
-    </div>
-  <% end %>
-</div>
