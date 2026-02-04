@@ -3,7 +3,7 @@
 <div>
   <% @todo_lists.each do |todo_list| %>
     <div>
-      #<%= todo_list.id %> | <%= todo_list.name %>
+      <%= link_to "##{ todo_list.id } | #{ todo_list.name }", todo_list %>
     </div>
   <% end %>
 </div>

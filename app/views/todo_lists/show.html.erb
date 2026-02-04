@@ -1,0 +1,16 @@
+<h1><%= @todo_list.name %></h1>
+
+<%= form_with model: [@todo_list, @todo_item] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, required: true %>
+
+  <%= f.submit %>
+<% end %>
+
+<% if @todo_items.any? %>
+  <ul>
+    <% @todo_items.each do |todo_item| %>
+      <li><%= todo_item.name %></li>
+    <% end %>
+  </ul>
+<% end %>
