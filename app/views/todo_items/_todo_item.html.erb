@@ -14,7 +14,7 @@
 
     <div class="flex-1 flex items-center gap-2"><span class="text-base transition-all duration-300 text-slate-700 <%= 'line-through' if todo_item.is_completed? %>"><%= todo_item.name %></span></div>
 
-    <%= link_to edit_todo_list_todo_item_path(todo_item.todo_list, todo_item), class: "opacity-0 group-hover:opacity-100 p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all duration-200 cursor-pointer" do %>
+    <%= link_to edit_todo_list_todo_item_path(todo_item.todo_list, todo_item), class: "opacity-0 group-hover:opacity-100 p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all duration-200 cursor-pointer", data: { turbo_frame: dom_id(todo_item, :edit) } do %>
       <%= icon("pencil", class: "w-4 h-4") %>
     <% end %>
 

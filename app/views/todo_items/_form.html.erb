@@ -1,4 +1,8 @@
-<%= form_with model: todo_item, url: [todo_list, todo_item] do |f| %>
-  <%= f.text_field :name %>
-  <%= f.submit %>
+<%= form_with model: todo_item, url: [todo_list, todo_item], class: "relative" do |f| %>
+  <div class="flex items-center gap-3 bg-white rounded-2xl border border-slate-200 p-2 transition-colors duration-300" style="box-shadow: rgba(0, 0, 0, 0.04) 0px 1px 3px;">
+    <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center">
+      <%= icon("pen", class: "w-5 h-5 text-slate-400") %>
+    </div>
+    <%= f.text_field :name, class: "flex-1 bg-transparent text-slate-700 placeholder:text-slate-400 outline-none text-base py-2", autofocus: true, required: true %>
+  </div>
 <% end %>

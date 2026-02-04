@@ -8,7 +8,6 @@ class TodoItemsController < ApplicationController
   end
 
   def edit
-    render turbo_stream: turbo_stream.replace(helpers.dom_id(@todo_item, :edit), partial: "todo_items/form", locals: { todo_list: @todo_list, todo_item: @todo_item })
   end
 
   def update
