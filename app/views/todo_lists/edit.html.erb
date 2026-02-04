@@ -1,0 +1,13 @@
+<div class="flex-1 w-full md:max-w-3xl mx-auto px-4 sm:px-5 py-8 md:py-12 lg:py-20">
+  <div class="bg-white rounded-2xl border border-slate-200 p-6 md:p-8 shadow-sm">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-2xl md:text-3xl font-semibold text-slate-800">Edit List</h1>
+      <%= button_to todo_list_path(@todo_list), method: :delete, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 h-8 rounded-md px-3 text-xs cursor-pointer bg-red-500 hover:bg-red-600 text-white", data: { turbo_confirm: "Are you sure?" } do %>
+        <%= icon("trash2", class: "w-4 h-4 mr-2") %>
+        Delete
+      <% end %>
+    </div>
+
+    <%= render "form", todo_list: @todo_list %>
+  </div>
+</div>

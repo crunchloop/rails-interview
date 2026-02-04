@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :todo_lists, only: %i[index], path: :todolists
   end
 
-  resources :todo_lists, only: %i[show new create] do
+  resources :todo_lists, except: %i[index] do
     resources :todo_items, only: %i[new create]
   end
 
