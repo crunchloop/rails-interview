@@ -33,6 +33,16 @@
     <% end %>
   </div>
   <div class="space-y-3">
-    <%= render partial: "todo_item/todo_item", collection: @todo_items %>
+    <% if @todo_items.any? %>
+      <%= render partial: "todo_item/todo_item", collection: @todo_items %>
+    <% else %>
+      <div class="text-center py-16" style="opacity: 1;">
+        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-slate-100 flex items-center justify-center">
+          <%= icon("circle-check", class: "w-10 h-10 text-slate-300") %>
+        </div>
+        <p class="text-slate-400 text-lg">No tasks yet</p>
+        <p class="text-slate-400 text-sm mt-1">Add your first task above</p>
+      </div>
+    <% end %>
   </div>
 </div>
