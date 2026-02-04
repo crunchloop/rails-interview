@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => "/sidekiq" # access it at http://localhost:3000/sidekiq
 
   resources :todo_lists, except: %i[index] do
+    post :complete_all, on: :member
+
     resources :todo_items, only: %i[create edit update destroy] do
       patch :complete, on: :member
       patch :undo_complete, on: :member

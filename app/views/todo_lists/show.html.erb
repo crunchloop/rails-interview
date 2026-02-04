@@ -16,6 +16,8 @@
     <%= render "stats", pending_todo_items: @pending_todo_items, completed_todo_items: @completed_todo_items  %>
   <% end %>
 
+  <%= button_to "Complete all TodoItems", [:complete_all, @todo_list], method: :post, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-green-500 hover:bg-green-600 shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full cursor-pointer text-white mb-4", data: { turbo_confirm: "This action will be performed in a background job. Please, reload the page after a short moment."} %>
+
   <div class="mb-6">
     <%= form_with model: [@todo_list, @todo_item], class: "relative" do |f| %>
       <div class="flex items-center gap-3 bg-white rounded-2xl border border-slate-200 p-2 transition-colors duration-300" style="box-shadow: rgba(0, 0, 0, 0.04) 0px 1px 3px;">
