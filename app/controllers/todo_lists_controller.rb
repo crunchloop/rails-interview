@@ -1,6 +1,6 @@
 class TodoListsController < ApplicationController
   before_action :set_todo_lists, only: %i[ show new edit ]
-  before_action :set_todo_list, only: %i[ edit update destroy ]
+  before_action :set_todo_list, only: %i[ edit update destroy complete_all ]
 
   def show
     @todo_list = TodoList.includes(:todo_items).find(params[:id])
@@ -31,6 +31,10 @@ class TodoListsController < ApplicationController
   def destroy
     @todo_list.destroy
     redirect_to root_url, status: :see_other
+  end
+
+  def complete_all
+    CompleteAllTodoItemsJob.perform_later(@todo_list)
   end
 
   private
