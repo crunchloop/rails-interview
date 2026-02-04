@@ -1,4 +1,6 @@
 class TodoListsController < ApplicationController
+  before_action :set_todo_lists # ToDO: add 'only' later
+
   def show
     @todo_list = TodoList.includes(:todo_items).find(params[:id])
     @todo_items = @todo_list.todo_items
@@ -17,5 +19,11 @@ class TodoListsController < ApplicationController
     @todo_list = TodoList.new
 
     respond_to :html
+  end
+
+  private
+
+  def set_todo_lists
+    @todo_lists = TodoList.all
   end
 end
