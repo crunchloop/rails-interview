@@ -17,7 +17,7 @@ class TodoItemsController < ApplicationController
 
   def destroy
     @todo_item.destroy
-    redirect_to @todo_list, status: :see_other
+    render turbo_stream: turbo_stream.remove(helpers.dom_id(@todo_item, :edit))
   end
 
   def complete
