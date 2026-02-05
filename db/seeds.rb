@@ -1,7 +1,9 @@
+####################
 # Clear DB
 TodoList.destroy_all
 puts "❌ TodoLists removed!"
 
+####################
 # Populate DB
 5.times { FactoryBot.create(:todo_list) }
 puts "✅ Created empty TodoLists!"
