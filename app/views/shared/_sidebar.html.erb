@@ -1,48 +1,35 @@
-<aside class="fixed md:relative inset-y-0 left-0 z-50 w-90 bg-white border-r border-slate-200 p-4 space-y-2 transform transition-transform duration-300 ease-in-out -translate-x-full md:translate-x-0" id="aside">
-  <div class="mb-6">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="text-lg font-semibold text-slate-800">Lists</h2>
-      <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 w-9 md:hidden" id="chevron-left">
-        <%= icon("chevron-left", class: "w-5 h-5") %>
-      </button>
-    </div>
-  </div>
-  <div class="pt-4">
-    <%= link_to new_todo_list_path, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full" do %>
-      <%= icon("plus", class: "w-4 h-4 mr-2") %>
-      New List
-    <% end %>
-  </div>
-  <div class="space-y-1">
-    <% @todo_lists.each do |todo_list| %>
-      <div class="w-full flex items-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 group text-slate-600 hover:bg-slate-50">
-        <%= link_to todo_list_path(todo_list), class: "flex items-center gap-3 flex-1 min-w-0" do %>
-          <%= icon("list", class: "w-5 h-5 flex-shrink-0") %>
-          <span class="flex-1 text-left font-medium truncate"><%= todo_list.name %></span>
-        <% end %>
-        <%= link_to edit_todo_list_path(todo_list), class: "opacity-0 group-hover:opacity-100 p-1 hover:bg-white/50 rounded transition-opacity" do %>
-          <%= icon("settings", class: "w-4 h-4") %>
-        <% end %>
+<div data-controller="sidebar">
+  <aside class="fixed md:relative inset-y-0 left-0 z-50 w-90 bg-white border-r border-slate-200 p-4 space-y-2 transform transition-transform duration-300 ease-in-out -translate-x-full md:translate-x-0" data-sidebar-target="sidebar">
+    <div class="mb-6">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-semibold text-slate-800">Lists</h2>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 w-9 md:hidden" data-sidebar-target="closeMenu">
+          <%= icon("chevron-left", class: "w-5 h-5") %>
+        </button>
       </div>
-    <% end %>
-  </div>
-</aside>
+    </div>
+    <div class="pt-4">
+      <%= link_to new_todo_list_path, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full" do %>
+        <%= icon("plus", class: "w-4 h-4 mr-2") %>
+        New List
+      <% end %>
+    </div>
+    <div class="space-y-1">
+      <% @todo_lists.each do |todo_list| %>
+        <div class="w-full flex items-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 group text-slate-600 hover:bg-slate-50">
+          <%= link_to todo_list_path(todo_list), class: "flex items-center gap-3 flex-1 min-w-0" do %>
+            <%= icon("list", class: "w-5 h-5 flex-shrink-0") %>
+            <span class="flex-1 text-left font-medium truncate"><%= todo_list.name %></span>
+          <% end %>
+          <%= link_to edit_todo_list_path(todo_list), class: "opacity-0 group-hover:opacity-100 p-1 hover:bg-white/50 rounded transition-opacity" do %>
+            <%= icon("settings", class: "w-4 h-4") %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </aside>
 
-<button class="mt-4 fixed inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 w-9 md:hidden" id="menu">
-  <%= icon("menu", class: "w-10 h-10") %>
-</button>
-
-<%# ToDo: move this to a Stimulus controller %>
-<script defer="true">
-  const sidebar = document.getElementById("aside")
-  const openBtn = document.getElementById("menu")
-  const closeBtn = document.getElementById("chevron-left")
-
-  openBtn?.addEventListener("click", () => {
-    sidebar.classList.remove("-translate-x-full")
-  })
-
-  closeBtn?.addEventListener("click", () => {
-    sidebar.classList.add("-translate-x-full")
-  })
-</script>
+  <button class="mt-4 fixed inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 w-9 md:hidden" data-sidebar-target="openMenu">
+    <%= icon("menu", class: "w-10 h-10") %>
+  </button>
+</div>
