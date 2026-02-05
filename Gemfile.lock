@@ -206,6 +206,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    shoulda-matchers (6.5.0)
+      activesupport (>= 5.2.0)
     sidekiq (7.3.10)
       base64
       connection_pool (>= 2.3.0, < 3)
@@ -273,6 +275,7 @@ DEPENDENCIES
   rspec
   rspec-rails
   selenium-webdriver
+  shoulda-matchers (~> 6.0)
   sidekiq (~> 7.3)
   sprockets-rails
   sqlite3 (~> 1.6)
