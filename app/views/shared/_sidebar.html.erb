@@ -1,8 +1,8 @@
-<aside class="fixed md:relative inset-y-0 left-0 z-50 w-128 bg-white border-r border-slate-200 p-4 space-y-2 transform transition-transform duration-300 ease-in-out -translate-x-full md:translate-x-0">
+<aside class="fixed md:relative inset-y-0 left-0 z-50 w-90 bg-white border-r border-slate-200 p-4 space-y-2 transform transition-transform duration-300 ease-in-out -translate-x-full md:translate-x-0" id="aside">
   <div class="mb-6">
     <div class="flex items-center justify-between mb-4">
       <h2 class="text-lg font-semibold text-slate-800">Lists</h2>
-      <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 w-9 md:hidden">
+      <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 w-9 md:hidden" id="chevron-left">
         <%= icon("chevron-left", class: "w-5 h-5") %>
       </button>
     </div>
@@ -28,15 +28,15 @@
   </div>
 </aside>
 
-<button class="mt-4 fixed inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 w-9 md:hidden">
+<button class="mt-4 fixed inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 w-9 md:hidden" id="menu">
   <%= icon("menu", class: "w-10 h-10") %>
 </button>
 
 <%# ToDo: move this to a Stimulus controller %>
-<script>
-  const sidebar = document.querySelector("aside")
-  const openBtn = document.querySelector(".lucide-menu")?.closest("button")
-  const closeBtn = document.querySelector(".lucide-chevron-left")?.closest("button")
+<script defer="true">
+  const sidebar = document.getElementById("aside")
+  const openBtn = document.getElementById("menu")
+  const closeBtn = document.getElementById("chevron-left")
 
   openBtn?.addEventListener("click", () => {
     sidebar.classList.remove("-translate-x-full")
