@@ -24,7 +24,7 @@ describe Api::TodoListsController do
       it 'includes todo list records' do
         get :index, format: :json
 
-        todo_lists = JSON.parse(response.body)
+        todo_lists = JSON.parse(response.body)['todo_lists']
 
         aggregate_failures 'includes the id and name' do
           expect(todo_lists.count).to eq(1)

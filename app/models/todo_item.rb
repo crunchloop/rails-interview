@@ -10,4 +10,12 @@ class TodoItem < ApplicationRecord
   }
 
   validates :title, presence: true
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[title description start_date end_date state]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[todo_list]
+  end
 end

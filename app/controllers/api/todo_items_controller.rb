@@ -4,8 +4,22 @@ module Api
     before_action :set_todo_item, only: %i[show update destroy]
 
     # GET /api/todolists/:todo_list_id/items
+    # Supports filtering via Ransack: ?q[title_cont]=buy&q[state_eq]=Done
+    # Supports pagination: ?page=1&per_page=10
     def index
-      render json: @todo_list.todo_items
+      per_page = (params[:per_page] || 10).to_i
+      @q = @todo_list.todo_items.ransack(params[:q])
+      todo_items = @q.result(distinct: true).page(params[:page]).per(per_page)
+
+      render json: {
+        todo_items: todo_items,
+        meta: {
+          current_page: todo_items.current_page,
+          total_pages: todo_items.total_pages,
+          total_count: todo_items.total_count,
+          per_page: todo_items.limit_value
+        }
+      }
     end
 
     # GET /api/todolists/:todo_list_id/items/:id

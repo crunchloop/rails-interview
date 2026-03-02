@@ -3,8 +3,24 @@ module Api
     before_action :set_todo_list, only: %i[show update destroy]
 
     # GET /api/todolists
+    # Supports filtering via Ransack: ?q[name_cont]=shopping
+    # Supports pagination: ?page=1&per_page=10
     def index
-      render json: TodoList.all
+      raise ActionController::RoutingError, 'Not supported format' unless request.format.json?
+
+      per_page = (params[:per_page] || 10).to_i
+      @q = TodoList.ransack(params[:q])
+      todo_lists = @q.result(distinct: true).page(params[:page]).per(per_page)
+
+      render json: {
+        todo_lists: todo_lists.as_json(only: %i[id name]),
+        meta: {
+          current_page: todo_lists.current_page,
+          total_pages: todo_lists.total_pages,
+          total_count: todo_lists.total_count,
+          per_page: todo_lists.limit_value
+        }
+      }
     end
 
     # GET /api/todolists/:id
