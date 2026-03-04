@@ -1,0 +1,16 @@
+<%= form_with model: todo_list do |f| %>
+  <% if todo_list.errors.any? %>
+    <div id="error_explanation">
+      <% todo_list.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

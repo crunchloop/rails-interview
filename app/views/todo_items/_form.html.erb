@@ -1,0 +1,36 @@
+<%= form_with model: [@todo_list, todo_item] do |f| %>
+  <% if todo_item.errors.any? %>
+    <div id="error_explanation">
+      <% todo_item.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title, autofocus: true %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= f.label :end_date %>
+    <%= f.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= f.label :state %>
+    <%= f.select :state, TodoItem::STATES %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

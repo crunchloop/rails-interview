@@ -1,17 +1,16 @@
 source "https://rubygems.org"
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.4", ">= 7.0.4.3"
+gem "rails", "~> 8.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use SQLite3 as the database for Active Record
-gem "sqlite3", "~> 1.6"
+# Use PostgreSQL as the database for Active Record
+gem "pg", "~> 1.5"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.0"
+gem "puma", "~> 6.0"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -22,12 +21,14 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
+gem "sidekiq"
+
 gem "active_model_serializers"
 gem "ransack"
 gem "kaminari"
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
+gem "redis", "~> 4.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -66,7 +67,7 @@ group :development do
 end
 
 group :development, :test do
-  gem "rspec-rails"
+  gem "rspec-rails", "~> 7.0"
 end
 
 group :test do
@@ -74,5 +75,4 @@ group :test do
   gem "rspec"
   gem "capybara"
   gem "selenium-webdriver"
-  gem "webdrivers"
 end

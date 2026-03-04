@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_03_02_000000) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_02_205323) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "todo_items", force: :cascade do |t|
-    t.string "title", null: false
     t.text "description"
-    t.date "start_date"
     t.date "end_date"
+    t.date "start_date"
     t.string "state", default: "Ready for start", null: false
+    t.string "title", null: false
     t.integer "todo_list_id", null: false
     t.index ["todo_list_id"], name: "index_todo_items_on_todo_list_id"
   end

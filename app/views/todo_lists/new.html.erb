@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "new_todo_list" do %>
+  <h2>New Todo List</h2>
+  <%= render "form", todo_list: @todo_list %>
+  <%= link_to "Cancel", todo_lists_path %>
+<% end %>

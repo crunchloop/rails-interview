@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bundle update 2>&1)",
+      "Bash(bundle exec rspec 2>&1)",
+      "Bash(bin/rails db:migrate 2>&1)",
+      "Bash(bundle exec rspec spec/requests/api/todo_lists/bulk_update_state_spec.rb spec/jobs/bulk_update_todo_items_state_job_spec.rb spec/jobs/update_todo_item_state_job_spec.rb 2>&1)"
+    ]
+  }
+}

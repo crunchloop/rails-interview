@@ -1,6 +1,6 @@
 module Api
   class TodoListsController < ApiController
-    before_action :set_todo_list, only: %i[show update destroy]
+    before_action :set_todo_list, only: %i[show update destroy bulk_update_state]
 
     # GET /api/todolists
     # Supports filtering via Ransack: ?q[name_cont]=shopping
@@ -46,6 +46,20 @@ module Api
       else
         render json: { errors: @todo_list.errors.full_messages }, status: :unprocessable_entity
       end
+    end
+
+    # PATCH /api/todolists/:id/bulk_update_state
+    def bulk_update_state
+      new_state = params[:state]
+      unless TodoItem::STATES.include?(new_state)
+        return render json: { error: "Invalid state. Must be one of: #{TodoItem::STATES.join(', ')}" },
+                      status: :unprocessable_entity
+      end
+
+      @todo_list.todo_items.each do |item|
+        UpdateTodoItemStateJob.perform_later(item.id, new_state)
+      end
+      render json: { message: "Bulk state update enqueued" }, status: :accepted
     end
 
     # DELETE /api/todolists/:id

@@ -1,0 +1,4 @@
+<%= turbo_stream.prepend "todo_lists", partial: "todo_lists/todo_list", locals: { todo_list: @todo_list } %>
+<%= turbo_stream.update "new_todo_list" do %>
+  <%= link_to "New Todo List", new_todo_list_path %>
+<% end %>

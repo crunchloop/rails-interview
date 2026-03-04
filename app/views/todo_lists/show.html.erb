@@ -1,0 +1,37 @@
+<h1><%= @todo_list.name %></h1>
+
+<%= link_to "← All Lists", todo_lists_path %>
+&nbsp;
+<%= link_to "Edit Name", edit_todo_list_path(@todo_list) %>
+&nbsp;
+<%= button_to "Delete List", todo_list_path(@todo_list), method: :delete,
+    data: { turbo: false },
+    form: { data: { turbo_confirm: "Delete \"#{@todo_list.name}\" and all its items?" } } %>
+
+<hr>
+
+<h2>Bulk State Update</h2>
+<div data-controller="bulk-state"
+     data-bulk-state-url-value="<%= bulk_update_state_api_todo_list_path(@todo_list) %>">
+  <select data-bulk-state-target="select">
+    <% TodoItem::STATES.each do |state| %>
+      <option value="<%= state %>"><%= state %></option>
+    <% end %>
+  </select>
+  <button data-action="click->bulk-state#submit">Apply to All Items</button>
+  <span data-bulk-state-target="feedback"></span>
+</div>
+
+<hr>
+
+<h2>Items</h2>
+
+<%= turbo_frame_tag "new_todo_item" do %>
+  <%= link_to "Add Item", new_todo_list_todo_item_path(@todo_list) %>
+<% end %>
+
+<%= turbo_stream_from @todo_list %>
+
+<div id="todo_items">
+  <%= render @todo_list.todo_items %>
+</div>

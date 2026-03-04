@@ -1,0 +1,18 @@
+<%= turbo_frame_tag todo_item do %>
+  <div>
+    <strong><%= todo_item.title %></strong>
+    <em>[<%= todo_item.state %>]</em>
+
+    <% if todo_item.description.present? %>
+      &mdash; <%= todo_item.description %>
+    <% end %>
+
+    <% if todo_item.start_date.present? || todo_item.end_date.present? %>
+      (<%= todo_item.start_date %> &ndash; <%= todo_item.end_date %>)
+    <% end %>
+
+    <%= link_to "Edit", edit_todo_list_todo_item_path(todo_item.todo_list, todo_item) %>
+    <%= button_to "Delete", todo_list_todo_item_path(todo_item.todo_list, todo_item), method: :delete,
+        form: { data: { turbo_confirm: "Delete \"#{todo_item.title}\"?" } } %>
+  </div>
+<% end %>

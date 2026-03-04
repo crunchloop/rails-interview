@@ -8,9 +8,18 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= action_cable_meta_tag %>
   </head>
 
   <body>
+    <nav>
+      <%= link_to "Todo Lists", todo_lists_path %>
+    </nav>
+
+    <% flash.each do |type, message| %>
+      <p id="flash-<%= type %>"><%= message %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
