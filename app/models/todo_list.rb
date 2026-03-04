@@ -1,4 +1,6 @@
 class TodoList < ApplicationRecord
+  include ExternalSyncable
+
   has_many :todo_items, dependent: :destroy
 
   validates :name, presence: true

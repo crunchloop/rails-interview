@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => "/sidekiq"
 
   namespace :api do
+    namespace :sync do
+      resource :webhook, only: :create
+    end
+
     resources :todo_lists, only: %i[index show create update destroy], path: :todolists do
       member do
         patch :bulk_update_state

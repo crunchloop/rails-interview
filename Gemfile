@@ -22,6 +22,7 @@ gem "turbo-rails"
 gem "stimulus-rails"
 
 gem "sidekiq"
+gem "faraday"
 
 gem "active_model_serializers"
 gem "ransack"

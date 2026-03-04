@@ -1,4 +1,6 @@
 class TodoItem < ApplicationRecord
+  include ExternalSyncable
+
   STATES = ["Ready for start", "In progress", "Done"].freeze
 
   belongs_to :todo_list
