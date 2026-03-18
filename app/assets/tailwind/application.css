@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --color-soft-yellow: #fff6b7;
+  --color-soft-pink: #ff6ea8;
+  --color-soft-orange: #ff9b4a;
+  --color-soft-blue: #4b92ff;
+}
+
+@layer base {
+  body {
+    @apply m-0 min-h-full text-[#1e1e1e] antialiased;
+    background:
+      radial-gradient(1100px 600px at 20% 10%, rgba(255, 110, 168, 0.25), transparent 60%),
+      radial-gradient(900px 500px at 90% 15%, rgba(75, 146, 255, 0.18), transparent 60%),
+      radial-gradient(900px 600px at 60% 90%, rgba(255, 155, 74, 0.20), transparent 60%),
+      #fff6b7;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .confetti {
+    @apply relative h-0;
+  }
+
+  .confetti__piece {
+    @apply absolute -top-[6px] w-2 h-3 rounded-[3px];
+    animation: confetti-fall ease-out both;
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(140px) rotate(260deg);
+    opacity: 0;
+  }
+}

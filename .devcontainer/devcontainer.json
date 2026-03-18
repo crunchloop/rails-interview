@@ -1,32 +1,19 @@
 {
   "name": "crunchloop-rails-interview",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
 
-  // Dockerfile for the devcontainer
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
+  "workspaceFolder": "/workspaces/rails-interview",
 
-  // Set the workspace folder
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-
-  // Features to add to the dev container. More info: https://containers.dev/features.
-  "features": {},
-
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [3000],
 
-  // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "bundle install && bundle exec rake db:setup",
+  "postCreateCommand": "bundle install && bin/rails db:setup",
 
-  // Configure tool-specific properties.
+  "postStartCommand": "rm -f tmp/pids/server.pid && bin/dev",
+
   "customizations": {
     "vscode": {
-      "extensions": [
-        "Postman.postman-for-vscode"
-      ]
+      "extensions": ["Postman.postman-for-vscode"]
     }
   }
-
-  // Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  // "remoteUser": "vscode"
 }

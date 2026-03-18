@@ -1,0 +1,23 @@
+<div class="max-w-[980px] mx-auto px-[18px] pt-[28px] pb-[44px]">
+  <header class="flex items-center justify-between gap-4 mb-[18px]">
+    <div>
+      <h1 class="text-[28px] font-bold tracking-tight m-0 text-[#1e1e1e]">New Todo List</h1>
+      <p class="mt-[6px] text-gray-600">Give it a name and start adding items.</p>
+    </div>
+    <%= link_to "Back", todo_lists_path, class: "inline-flex items-center justify-center px-4 py-2.5 rounded-xl border border-black/[0.08] bg-white/70 text-[#1e1e1e] font-semibold no-underline shadow transition-all hover:bg-white/90" %>
+  </header>
+
+  <div class="bg-white/70 border border-black/[0.08] rounded-[14px] shadow-xl shadow-black/[0.08] p-[14px] backdrop-blur-[10px]">
+    <%= form_with model: @todo_list, url: todo_lists_path do |f| %>
+      <div class="grid gap-3">
+        <%= f.label :name, "List name", class: "font-bold text-[#1e1e1e]" %>
+        <%= f.text_field :name, required: true, class: "w-full border border-black/[0.08] bg-white/60 rounded-xl px-3 py-2.5 font-bold outline-none focus:border-soft-blue/45 focus:ring-4 focus:ring-soft-blue/18", autofocus: true %>
+        <div class="flex gap-[10px] justify-end mt-4">
+          <%= link_to "Cancel", todo_lists_path, class: "inline-flex items-center justify-center px-4 py-2.5 rounded-xl border border-black/[0.08] bg-white/70 text-[#1e1e1e] font-semibold no-underline shadow transition-all hover:bg-white/90" %>
+          <%= f.submit "Create", class: "inline-flex items-center justify-center px-6 py-2.5 rounded-xl border border-[#ff9b4a]/30 bg-white/70 text-[#1e1e1e] font-bold no-underline shadow-lg shadow-[#ff9b4a]/10 transition-all hover:bg-white/80 cursor-pointer" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

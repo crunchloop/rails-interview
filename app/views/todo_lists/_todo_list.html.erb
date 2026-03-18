@@ -1,0 +1,50 @@
+<%# locals: todo_list: %>
+<section class="bg-white/70 border border-black/[0.08] rounded-[14px] shadow-xl shadow-black/[0.08] p-[14px] backdrop-blur-[10px] todo-list" data-todo-list-id="<%= todo_list.id %>">
+  <%= turbo_stream_from "bulk_operations_todo_list_#{todo_list.id}" %>
+  <div id="bulk_operation_todo_list_<%= todo_list.id %>">
+    <%# Show active ops, OR finished ones from the last 10 seconds %>
+    <% active_op = todo_list.bulk_operations.where(state: ["queued", "running"]).last %>
+    <% active_op ||= todo_list.bulk_operations.where(state: "finished").where("finished_at > ?", 10.seconds.ago).last %>
+    <% if active_op %>
+      <%= render partial: "todo_lists/bulk_operation", locals: { op: active_op } %>
+    <% end %>
+  </div>
+
+  <div class="flex items-center justify-between gap-[10px] my-3">
+    <select class="w-full border border-black/[0.08] bg-white/65 rounded-xl px-3 py-2.5 outline-none font-semibold focus:border-soft-blue/45 focus:ring-4 focus:ring-soft-blue/18"
+            data-todo-list-id="<%= todo_list.id %>"
+            data-action="change->todo-lists#runBulkAction">
+      <option value="">Actions</option>
+      <option value="mark_all_done">Mark All as Done (active)</option>
+      <option value="delete_all">Delete All (active)</option>
+    </select>
+  </div>
+
+  <div class="flex gap-[10px] items-center mb-[10px]">
+    <input
+      class="w-full border border-black/[0.08] bg-white/60 rounded-xl px-3 py-2.5 font-bold outline-none focus:border-soft-blue/45 focus:ring-4 focus:ring-soft-blue/18"
+      value="<%= todo_list.name %>"
+      data-todo-list-id="<%= todo_list.id %>"
+      data-action="blur->todo-lists#editTodoListName"
+      aria-label="Todo list name"
+    />
+  </div>
+
+  <ul id="todo_list_items_<%= todo_list.id %>" class="list-none m-0 p-0 grid gap-2">
+    <% todo_list.todo_list_items.order(:created_at).each do |item| %>
+      <%= render partial: "todo_lists/todo_list_item", locals: { todo_list: todo_list, item: item } %>
+    <% end %>
+
+    <li class="grid grid-cols-[26px_1fr] gap-[10px] items-center px-[10px] py-[10px] rounded-xl bg-white/45 border border-black/[0.06] border-dashed">
+      <span class="w-[26px] h-[26px]"></span>
+      <input
+        class="w-full border-0 bg-transparent p-0 outline-none text-sm placeholder:text-black/45 focus:ring-4 focus:ring-soft-pink/15 focus:rounded-lg"
+        placeholder="Add a todo and press Enter…"
+        data-todo-list-id="<%= todo_list.id %>"
+        data-action="keydown->todo-lists#createItem"
+        aria-label="Add a todo item"
+      />
+    </li>
+  </ul>
+</section>
+

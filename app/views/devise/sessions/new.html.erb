@@ -1,0 +1,37 @@
+<div class="min-h-screen flex items-center justify-center p-6">
+  <div class="max-w-md w-full bg-white/70 border border-black/[0.08] rounded-[24px] shadow-xl shadow-black/[0.08] p-10 backdrop-blur-[10px]">
+    <h2 class="text-3xl font-bold tracking-tight text-[#1e1e1e] mb-8 text-center italic">Welcome back</h2>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+      <div class="space-y-2">
+        <%= f.label :email, class: "text-sm font-bold text-[#1e1e1e] ml-1" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",
+            class: "w-full border border-black/[0.08] bg-white/65 rounded-xl px-4 py-3 outline-none font-semibold focus:border-soft-blue/45 focus:ring-4 focus:ring-soft-blue/18 transition-all placeholder:text-gray-400",
+            placeholder: "your@email.com" %>
+      </div>
+
+      <div class="space-y-2">
+        <%= f.label :password, class: "text-sm font-bold text-[#1e1e1e] ml-1" %>
+        <%= f.password_field :password, autocomplete: "current-password",
+            class: "w-full border border-black/[0.08] bg-white/65 rounded-xl px-4 py-3 outline-none font-semibold focus:border-soft-blue/45 focus:ring-4 focus:ring-soft-blue/18 transition-all placeholder:text-gray-400",
+            placeholder: "••••••••" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="flex items-center gap-3 px-1">
+          <%= f.check_box :remember_me, class: "w-[18px] h-[18px] border-black/[0.08] rounded bg-white/65 text-soft-blue focus:ring-soft-blue/18" %>
+          <%= f.label :remember_me, class: "text-sm font-semibold text-gray-600 cursor-pointer" %>
+        </div>
+      <% end %>
+
+      <div class="pt-2">
+        <%= f.submit "Sign in",
+            class: "w-full bg-[#1e1e1e] text-white font-bold py-3.5 rounded-xl shadow-lg shadow-black/10 hover:bg-black transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0" %>
+      </div>
+    <% end %>
+
+    <div class="mt-8 pt-6 border-t border-black/[0.04] text-center">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

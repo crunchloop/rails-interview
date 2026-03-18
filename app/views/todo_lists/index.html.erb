@@ -1,9 +1,12 @@
-<%= link_to 'Add Todo List', new_todo_list_path %>
-
-<div>
-  <% @todo_lists.each do |todo_list| %>
+<div class="max-w-[980px] mx-auto px-[18px] pt-[28px] pb-[44px]" data-controller="todo-lists">
+  <header class="flex items-center justify-between gap-4 mb-[18px]">
     <div>
-      #<%= todo_list.id %> | <%= todo_list.name %>
+      <h1 class="text-[28px] font-bold tracking-tight m-0 text-[#1e1e1e]">Todo Lists</h1>
+      <p class="mt-[6px] text-gray-600">Quick edits, checkboxes, and fast add — powered by your API.</p>
     </div>
-  <% end %>
+    <%= link_to 'Add Todo List', new_todo_list_path, class: "inline-flex items-center justify-center px-4 py-2.5 rounded-xl border border-[#ff9b4a]/30 bg-white/70 text-[#1e1e1e] font-semibold no-underline shadow-lg shadow-[#ff9b4a]/10 transition-all hover:bg-white/90" %>
+  </header>
+
+  <%= turbo_stream_from current_user, "todo_lists" %>
+  <%= render partial: "todo_lists/todo_lists", locals: { todo_lists: @todo_lists } %>
 </div>

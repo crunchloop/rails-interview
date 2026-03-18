@@ -1,0 +1,42 @@
+<div class="min-h-screen flex items-center justify-center p-6">
+  <div class="max-w-md w-full bg-white/70 border border-black/[0.08] rounded-[24px] shadow-xl shadow-black/[0.08] p-10 backdrop-blur-[10px]">
+    <h2 class="text-3xl font-bold tracking-tight text-[#1e1e1e] mb-8 text-center italic">Create account</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="space-y-2">
+        <%= f.label :email, class: "text-sm font-bold text-[#1e1e1e] ml-1" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",
+            class: "w-full border border-black/[0.08] bg-white/65 rounded-xl px-4 py-3 outline-none font-semibold focus:border-soft-blue/45 focus:ring-4 focus:ring-soft-blue/18 transition-all placeholder:text-gray-400",
+            placeholder: "your@email.com" %>
+      </div>
+
+      <div class="space-y-2">
+        <%= f.label :password, class: "text-sm font-bold text-[#1e1e1e] ml-1" %>
+        <% if @minimum_password_length %>
+          <span class="text-[10px] bg-black/5 px-2 py-0.5 rounded-full font-bold text-gray-500 uppercase tracking-wider ml-1">min <%= @minimum_password_length %> chars</span>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password",
+            class: "w-full border border-black/[0.08] bg-white/65 rounded-xl px-4 py-3 outline-none font-semibold focus:border-soft-blue/45 focus:ring-4 focus:ring-soft-blue/18 transition-all placeholder:text-gray-400",
+            placeholder: "••••••••" %>
+      </div>
+
+      <div class="space-y-2">
+        <%= f.label :password_confirmation, class: "text-sm font-bold text-[#1e1e1e] ml-1" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password",
+            class: "w-full border border-black/[0.08] bg-white/65 rounded-xl px-4 py-3 outline-none font-semibold focus:border-soft-blue/45 focus:ring-4 focus:ring-soft-blue/18 transition-all placeholder:text-gray-400",
+            placeholder: "••••••••" %>
+      </div>
+
+      <div class="pt-2">
+        <%= f.submit "Sign up",
+            class: "w-full bg-[#1e1e1e] text-white font-bold py-3.5 rounded-xl shadow-lg shadow-black/10 hover:bg-black transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0" %>
+      </div>
+    <% end %>
+
+    <div class="mt-8 pt-6 border-t border-black/[0.04] text-center">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

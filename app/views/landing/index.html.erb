@@ -1,0 +1,60 @@
+<div class="min-h-[80vh] flex flex-col items-center justify-center px-6 py-24 text-center">
+  <div class="max-w-3xl animate-in font-fade-in duration-700">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-soft-blue/10 border border-soft-blue/20 text-soft-blue text-xs font-bold uppercase tracking-wider mb-8">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-soft-blue opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-soft-blue"></span>
+      </span>
+      Version 2.0 is here
+    </div>
+
+    <h1 class="text-6xl md:text-7xl font-bold tracking-tight text-[#1e1e1e] mb-8 italic">
+      Your tasks, <br/>
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-soft-blue to-soft-pink">softly organized.</span>
+    </h1>
+
+    <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
+      Experience the fastest way to manage your work with real-time updates, bulk actions, and a beautiful interface.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+      <%= link_to "Get Started Free", new_user_registration_path,
+          class: "w-full sm:w-auto px-10 py-4 bg-[#1e1e1e] text-white font-bold rounded-2xl shadow-xl shadow-black/10 hover:shadow-black/20 hover:scale-[1.02] transition-all transform active:scale-[0.98]" %>
+
+      <%= link_to "Sign In", new_user_session_path,
+          class: "w-full sm:w-auto px-10 py-4 bg-white/70 backdrop-blur-md border border-black/[0.08] text-[#1e1e1e] font-bold rounded-2xl hover:bg-white/90 transition-all" %>
+    </div>
+  </div>
+
+  <div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl w-full">
+    <div class="p-8 rounded-[24px] bg-white/40 border border-black/[0.04] backdrop-blur-sm text-left">
+      <div class="w-12 h-12 rounded-xl bg-soft-blue/10 flex items-center justify-center mb-6">
+        <svg class="w-6 h-6 text-soft-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      </div>
+      <h3 class="font-bold text-lg text-[#1e1e1e] mb-2 text-italic">Real-Time Sync</h3>
+      <p class="text-gray-500 text-sm font-medium leading-relaxed">Watch your items update instantly across devices with Turbo Streams technology.</p>
+    </div>
+
+    <div class="p-8 rounded-[24px] bg-white/40 border border-black/[0.04] backdrop-blur-sm text-left">
+      <div class="w-12 h-12 rounded-xl bg-soft-pink/10 flex items-center justify-center mb-6">
+        <svg class="w-6 h-6 text-soft-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+        </svg>
+      </div>
+      <h3 class="font-bold text-lg text-[#1e1e1e] mb-2 text-italic">Bulk Actions</h3>
+      <p class="text-gray-500 text-sm font-medium leading-relaxed">Delete or complete hundreds of items at once with our high-performance background processing.</p>
+    </div>
+
+    <div class="p-8 rounded-[24px] bg-white/40 border border-black/[0.04] backdrop-blur-sm text-left">
+      <div class="w-12 h-12 rounded-xl bg-soft-green/10 flex items-center justify-center mb-6">
+        <svg class="w-6 h-6 text-soft-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+      </div>
+      <h3 class="font-bold text-lg text-[#1e1e1e] mb-2 text-italic">Privacy First</h3>
+      <p class="text-gray-500 text-sm font-medium leading-relaxed">Your data is yours alone. Every todo list is securely scoped to your private account.</p>
+    </div>
+  </div>
+</div>

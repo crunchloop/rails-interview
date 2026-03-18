@@ -1,0 +1,9 @@
+<%# locals: todo_lists: %>
+<div id="todo_lists">
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[14px]">
+    <% todo_lists.each do |todo_list| %>
+      <%= render partial: "todo_lists/todo_list", locals: { todo_list: todo_list } %>
+    <% end %>
+  </div>
+</div>
+

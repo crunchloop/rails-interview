@@ -1,0 +1,26 @@
+<div id="<%= op.dom_id %>"
+     class="mt-[10px] rounded-[14px] border border-black/[0.08] bg-white/60 p-[12px] <%= "ring-2 ring-soft-green/30" if op.finished? %> <%= "ring-2 ring-red-500/30" if op.failed? %>"
+     data-controller="bulk-progress"
+     data-bulk-progress-finished-value="<%= op.finished? %>"
+     data-bulk-progress-mark-done-value="<%= op.mark_done_action? %>">
+  <div class="flex items-baseline justify-between gap-[10px] mb-[10px]">
+    <div class="text-sm">
+      <strong class="font-bold text-[#1e1e1e]">Bulk action</strong>
+      <span class="text-gray-500 font-semibold ml-2 text-xs">
+        <%= op.action.tr("_", " ") %> — <%= op.processed_count %>/<%= op.total_count %>
+      </span>
+    </div>
+    <div class="text-gray-500 font-bold text-xs uppercase tracking-[0.06em]">
+      <%= op.state %>
+    </div>
+  </div>
+
+  <div class="h-[10px] rounded-full bg-black/[0.06] overflow-hidden" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="<%= op.progress_percent %>">
+    <div class="h-full bg-gradient-to-r from-soft-blue/90 to-soft-pink/90 transition-all duration-500" style="width: <%= op.progress_percent %>%"></div>
+  </div>
+
+  <% if op.failed? %>
+    <div class="mt-[10px] text-red-600 font-semibold text-sm"><%= op.error_message %></div>
+  <% end %>
+</div>
+
