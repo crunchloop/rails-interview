@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "todo_item_description" do %>
+  <%= text_field_tag "todo_item[description]", @description, id: "todo_item_description" %>
+<% end %>

@@ -1,0 +1,24 @@
+<div class="todo-items__header">
+  <h1>Todo List: <%= @todo_list.name %></h1>
+  <%= link_to 'Add Todo', new_todo_list_todo_path(@todo_list), class: 'btn btn--primary' %>
+</div>
+
+<ul class="todo-items__list">
+  <% @todo_items.each do |item| %>
+    <li class="todo-items__item">
+      <span class="todo-items__description<%= ' todo-items__description--completed' if item.completed %>"><%= item.description %></span>
+      <span class="todo-items__status <%= item.completed ? 'todo-items__status--completed' : 'todo-items__status--pending' %>">
+        <%= item.completed ? "Completed" : "Pending" %>
+      </span>
+      <div class="todo-items__actions">
+        <% unless item.completed %>
+          <%= button_to 'Complete', complete_todo_list_todo_path(@todo_list, item), method: :patch, class: 'btn btn--primary' %>
+        <% end %>
+        <%= link_to 'Edit', edit_todo_list_todo_path(@todo_list, item), class: 'btn btn--secondary' %>
+        <%= button_to 'Delete', todo_list_todo_path(@todo_list, item), method: :delete, class: 'btn btn--danger', data: { turbo_confirm: 'Are you sure?' } %>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Back to Todo Lists', todo_lists_path, class: 'btn btn--secondary' %>

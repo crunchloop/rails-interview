@@ -1,0 +1,32 @@
+<div class="todo-item-form">
+  <h1>New Todo Item</h1>
+
+  <%= form_with(model: @todo_item, url: todo_list_todos_path(@todo_list)) do |form| %>
+    <% if @todo_item.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@todo_item.errors.count, "error") %> prohibited this todo item from being saved:</h2>
+        <ul>
+          <% @todo_item.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="todo-item-form__group">
+      <%= form.label :description %>
+      <%= form.text_field :description %>
+      <button type="submit"
+              formaction="<%= autofill_todo_list_todos_path(@todo_list) %>"
+              class="btn btn--secondary">
+        Autofill
+      </button>
+    </div>
+
+    <div class="todo-item-form__actions">
+      <%= form.submit "Create Todo Item", class: 'btn btn--primary' %>
+      <%= link_to 'Back', todo_list_todos_path(@todo_list), class: 'btn btn--secondary todo-item-form__back' %>
+    </div>
+  <% end %>
+
+</div>

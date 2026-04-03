@@ -1,0 +1,115 @@
+/* Todo Lists */
+
+/* Index */
+.todo-lists__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.todo-lists__header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.todo-lists__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.todo-lists__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  background: #fff;
+}
+
+.todo-lists__item:hover {
+  background: #f8fafc;
+}
+
+.todo-lists__id {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #94a3b8;
+  min-width: 2rem;
+}
+
+.todo-lists__name {
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+.todo-lists__link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+}
+
+.todo-lists__link:hover .todo-lists__name {
+  text-decoration: underline;
+}
+
+.todo-lists__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Forms (new / edit) */
+.todo-list-form {
+  max-width: 480px;
+  margin: 2rem auto;
+}
+
+.todo-list-form h1 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.todo-list-form__group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.todo-list-form label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.todo-list-form input[type="text"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.todo-list-form input[type="text"]:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.todo-list-form__actions {
+  margin-top: 1.5rem;
+}
+
+.todo-list-form__back {
+  margin-left: 1rem;
+}

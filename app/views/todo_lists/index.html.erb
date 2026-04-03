@@ -1,9 +1,21 @@
-<%= link_to 'Add Todo List', new_todo_list_path %>
-
-<div>
-  <% @todo_lists.each do |todo_list| %>
-    <div>
-      #<%= todo_list.id %> | <%= todo_list.name %>
-    </div>
-  <% end %>
+<div class="todo-lists__header">
+  <h1>Todo Lists</h1>
+  <%= link_to 'Add Todo List', new_todo_list_path, class: 'btn btn--primary' %>
 </div>
+
+<ul class="todo-lists__list">
+  <% @todo_lists.each do |todo_list| %>
+    <li class="todo-lists__item">
+      <%= link_to todo_list_todos_path(todo_list), class: 'todo-lists__link' do %>
+        <span class="todo-lists__id">#<%= todo_list.id %></span>
+        <span class="todo-lists__name"><%= todo_list.name %></span>
+        <span class="todo-lists__count"><%= todo_list.todo_items_count %> items</span>
+      <% end %>
+      <div class="todo-lists__actions">
+        <%= button_to 'Complete All', complete_all_todo_list_path(todo_list), method: :post, class: 'btn btn--primary' %>
+        <%= link_to 'Edit', edit_todo_list_path(todo_list), class: 'btn btn--secondary' %>
+        <%= button_to 'Delete', todo_list_path(todo_list), method: :delete, class: 'btn btn--danger', data: { turbo_confirm: 'Are you sure?' } %>
+      </div>
+    </li>
+  <% end %>
+</ul>
